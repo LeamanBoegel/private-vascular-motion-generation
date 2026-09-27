@@ -1,0 +1,10 @@
+# Conditioning-off arm of the resolution x conditioning factorial: the shared latent and the
+# coupling head are gone and the two noise multipliers are equalised, which makes the covariance
+# isotropic. The frozen subspace is retained so that the off-coupling energy ratio stays
+# measurable on this arm, as the printed off-cells report it.
+label: conditioning_off
+noise_geometry: isotropic
+sigma_parallel: 2.6
+sigma_perpendicular: 2.6
+rank: 12
+clipping_norm: 0.85

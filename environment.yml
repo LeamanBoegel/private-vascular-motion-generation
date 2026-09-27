@@ -1,0 +1,14 @@
+name: caps-release
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch>=2.2
+  - numpy>=1.24
+  - scipy>=1.10
+  - pyyaml>=6.0
+  - pip
+  - pip:
+      - -r requirements.txt

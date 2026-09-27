@@ -1,0 +1,9 @@
+study: scaling_window_horizon
+base: caps_main
+description: >
+  Procedure-window horizon sweep under the prefix-sum factorisation, reporting the realised
+  truncation rate, the composition-cost multiplier, the relative latency and the endpoint.
+sweep:
+  axis: window_horizon
+  rungs: [4, 8, 16, 32, 64, 128]
+  reference_single_step_charge: 1.0

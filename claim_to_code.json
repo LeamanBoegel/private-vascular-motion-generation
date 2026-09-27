@@ -1,0 +1,415 @@
+{
+  "release": "Differentially private joint generation of vascular images and catheter motion for collision avoidance",
+  "status_legend": {
+    "IMPLEMENTED": "code path exists and is exercised by the execution layer",
+    "BLOCKED": "requires the private cohort, the reported backbone or laboratory hardware",
+    "NOT_RUN": "code path exists but the manuscript does not state the quantity needed to run it"
+  },
+  "counts": {
+    "IMPLEMENTED": 40,
+    "BLOCKED": 8,
+    "NOT_RUN": 2
+  },
+  "mappings": [
+    {
+      "claim_id": "C-01",
+      "paper_item": "Sec. 4.3",
+      "statement": "A procedure is the synchronised pair (X in HxWxT, A in 6xT).",
+      "code_ref": "cohort/procedure.py:ProcedureRecord",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-DATA-01, EX-DATA-02"
+    },
+    {
+      "claim_id": "C-02",
+      "paper_item": "Sec. 4.2",
+      "statement": "Site A/B/C accrue 2214/1986/1642 procedures across two regions.",
+      "code_ref": "cohort/partition.py:site_strata",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-DATA-03, EX-DATA-04, MS-COHORT-01"
+    },
+    {
+      "claim_id": "C-03",
+      "paper_item": "Table 6 caption",
+      "statement": "Every proportion is a Wilson interval carrying its own denominator.",
+      "code_ref": "metrics/clinical.py:wilson_interval",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-15, MS-T6-WILSON-anatomy_simple"
+    },
+    {
+      "claim_id": "C-04",
+      "paper_item": "Sec. 4.10",
+      "statement": "Diagnostic frames are the pre-opacification mask, the peak-opacification frame and the load transients.",
+      "code_ref": "cohort/frames.py:select_diagnostic_frames",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-DATA-05"
+    },
+    {
+      "claim_id": "C-05",
+      "paper_item": "Sec. 4.10",
+      "statement": "Contact events are counted on the force-channel-covered subset after a threshold and a debounce rule.",
+      "code_ref": "cohort/force_channel.py:count_contact_events",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-DATA-06, EX-MET-12"
+    },
+    {
+      "claim_id": "C-06",
+      "paper_item": "Sec. 4.4",
+      "statement": "The coupling head solves Sigma12 Sigma22^-1 Sigma21 u = lambda^2 Sigma11 u.",
+      "code_ref": "coupling/cca.py:solve_canonical",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-COUP-01, EX-COUP-02"
+    },
+    {
+      "claim_id": "C-07",
+      "paper_item": "Algorithm 1 step 7",
+      "statement": "The coupling loss is -r^-1 sum of the leading squared canonical correlations.",
+      "code_ref": "coupling/cca.py:coupling_loss",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-COUP-03"
+    },
+    {
+      "claim_id": "C-08",
+      "paper_item": "Sec. 4.4",
+      "statement": "The shared latent is the only channel of procedure identity into either branch.",
+      "code_ref": "coupling/latent.py:draw_latent",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-COUP-06"
+    },
+    {
+      "claim_id": "C-09",
+      "paper_item": "Eq. (1)",
+      "statement": "The noise precision is sigma_par^-2 Pi_S + sigma_perp^-2 Pi_Sperp.",
+      "code_ref": "geometry/shaped_covariance.py:ShapedCovariance.precision",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-GEO-03"
+    },
+    {
+      "claim_id": "C-10",
+      "paper_item": "Eq. (2)",
+      "statement": "The released workload is AG + Z with procedures on rows and window micro-steps on columns.",
+      "code_ref": "substrate/__init__.py:add_shaped_noise",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-GEO-04, EX-MECH-06"
+    },
+    {
+      "claim_id": "C-11",
+      "paper_item": "Eq. (4)",
+      "statement": "The noise-normalised sensitivity is u = sqrt(sigma_par^-2 + rho sigma_perp^-2).",
+      "code_ref": "geometry/shaped_covariance.py:normalised_sensitivity",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-GEO-07, EX-GEO-08"
+    },
+    {
+      "claim_id": "C-12",
+      "paper_item": "Sec. 4.6",
+      "statement": "Anisotropy is admissible, not merely permitted, when sigma_perp < sigma_par.",
+      "code_ref": "geometry/shaped_covariance.py:anisotropy_admissible",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-GEO-06"
+    },
+    {
+      "claim_id": "C-13",
+      "paper_item": "Eq. (3)",
+      "statement": "The Renyi bound composes over rounds and converts at delta with a polylogarithmic window slack.",
+      "code_ref": "accounting/renyi.py:convert_to_epsilon",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-ACC-01 to EX-ACC-06"
+    },
+    {
+      "claim_id": "C-14",
+      "paper_item": "Algorithm 1 step 8",
+      "statement": "Clipping is taken once at a single norm before any noise is drawn.",
+      "code_ref": "accounting/clipping.py:clip_workload",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-CLIP-01 to EX-CLIP-03"
+    },
+    {
+      "claim_id": "C-15",
+      "paper_item": "Sec. 4.6",
+      "statement": "Reporting a budget without its accountant, unit and delta is incomplete.",
+      "code_ref": "accounting/tuple.py:PrivacyTuple",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MECH-02"
+    },
+    {
+      "claim_id": "C-16",
+      "paper_item": "Algorithm 2",
+      "statement": "The shaping subspace is estimated offline from non-private references and frozen.",
+      "code_ref": "estimator/reference_estimator.py:ReferenceShapingEstimator",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-EST-01 to EX-EST-03"
+    },
+    {
+      "claim_id": "C-17",
+      "paper_item": "Sec. 4.4",
+      "statement": "The estimator never reads a private record.",
+      "code_ref": "cohort/reference.py:assert_estimator_disjointness",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-EST-02"
+    },
+    {
+      "claim_id": "C-18",
+      "paper_item": "Algorithm 1 step 12",
+      "statement": "The private update is theta <- theta - gamma (AG + Z).",
+      "code_ref": "runner/trainer.py:CAPSTrainer.run",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-UPD-01, EX-MECH-02"
+    },
+    {
+      "claim_id": "C-19",
+      "paper_item": "Algorithm 1 step 16",
+      "statement": "Release samples z_p and decodes both branches as pure post-processing.",
+      "code_ref": "substrate/__init__.py:release_substrate",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MECH-07"
+    },
+    {
+      "claim_id": "C-20",
+      "paper_item": "Sec. 4.4",
+      "statement": "The procedure window is prefix-structured, so composition is logarithmic rather than linear.",
+      "code_ref": "coupling/prefix_sum.py:prefix_sum_scan",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-COUP-04, MS-T7D-COST-POLYLOG"
+    },
+    {
+      "claim_id": "C-21",
+      "paper_item": "Sec. 4.5",
+      "statement": "The appearance branch is a state-space vessel-segmentation encoder.",
+      "code_ref": "branches/ssm.py:SwinUMambaEncoder",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-FWD-02"
+    },
+    {
+      "claim_id": "C-22",
+      "paper_item": "Sec. 4.5",
+      "statement": "The motion branch is a flow-matching action head over six channels.",
+      "code_ref": "branches/motion.py:FlowMatchingActionHead",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-FWD-03"
+    },
+    {
+      "claim_id": "C-23",
+      "paper_item": "Sec. 4.5",
+      "statement": "Only the attention modules are privatised; the rest of the backbone stays frozen.",
+      "code_ref": "branches/attention.py:PrivatisedTransformerStack",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-FWD-02, EX-MECH-05"
+    },
+    {
+      "claim_id": "C-24",
+      "paper_item": "Sec. 4.10",
+      "statement": "Fidelity is FID, KID and SSIM at matched resolution.",
+      "code_ref": "metrics/fidelity.py:frechet_distance",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-01 to EX-MET-05"
+    },
+    {
+      "claim_id": "C-25",
+      "paper_item": "Sec. 4.10",
+      "statement": "Vessel geometry is Dice overlap and the 95th-percentile Hausdorff distance.",
+      "code_ref": "metrics/segmentation.py:percentile_hausdorff",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-06, EX-MET-07"
+    },
+    {
+      "claim_id": "C-26",
+      "paper_item": "Sec. 4.10",
+      "statement": "Motion agreement is ADE, FDE, DTW, smoothness and path-length efficiency.",
+      "code_ref": "metrics/trajectory.py:dynamic_time_warping",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-08 to EX-MET-11"
+    },
+    {
+      "claim_id": "C-27",
+      "paper_item": "Sec. 4.10",
+      "statement": "Values above 0.92 path-length efficiency indicate tracking or centreline-extraction.",
+      "code_ref": "metrics/trajectory.py:path_efficiency_is_artifact",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-11"
+    },
+    {
+      "claim_id": "C-28",
+      "paper_item": "Sec. 4.10",
+      "statement": "Safety is contact events per procedure, peak contact force and the force-duration integral.",
+      "code_ref": "metrics/safety.py:safety_from_rollouts",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-MET-12, EX-MET-14"
+    },
+    {
+      "claim_id": "C-29",
+      "paper_item": "Table 5 caption",
+      "statement": "A clinical endpoint is judged against its minimum clinically important difference.",
+      "code_ref": "metrics/safety.py:clears_mcid",
+      "status": "IMPLEMENTED",
+      "evidence": "MS-T5-CONTACT-MCID"
+    },
+    {
+      "claim_id": "C-30",
+      "paper_item": "Sec. 2.2",
+      "statement": "The privacy audit is attack based; a distance proxy is informative only.",
+      "code_ref": "audit/membership.py:member_nonmember_auc",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-AUD-01 to EX-AUD-03"
+    },
+    {
+      "claim_id": "C-31",
+      "paper_item": "Sec. 2.8",
+      "statement": "The three pre-specified primaries use Holm; the exploratory inventory uses Benjamini-Hochberg.",
+      "code_ref": "analysis/multiplicity.py:holm_bonferroni",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-AN-07 to EX-AN-08, MS-SE1-INVENTORY"
+    },
+    {
+      "claim_id": "C-32",
+      "paper_item": "Sec. 2.8",
+      "statement": "Correlated areas are compared with the nonparametric DeLong construction.",
+      "code_ref": "analysis/delong.py:delong_paired_test",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-AN-01, EX-AN-02"
+    },
+    {
+      "claim_id": "C-33",
+      "paper_item": "Table 3",
+      "statement": "The resolution x conditioning factorial separates the two main effects and their interaction.",
+      "code_ref": "analysis/factorial.py:full_contrast_table",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-AN-03, MS-T3-COND-fid"
+    },
+    {
+      "claim_id": "C-34",
+      "paper_item": "Table 4 panel (b)",
+      "statement": "Pairwise removals are super-additive except the estimator pair.",
+      "code_ref": "analysis/interaction.py:PairwiseInteraction",
+      "status": "IMPLEMENTED",
+      "evidence": "MS-T4-IR-coupling-shaped"
+    },
+    {
+      "claim_id": "C-35",
+      "paper_item": "Table 1 caption",
+      "statement": "T_null = 1.0% relative governs the null-result fence and the star marks.",
+      "code_ref": "analysis/null_fence.py:FenceVerdict",
+      "status": "IMPLEMENTED",
+      "evidence": "MS-T4-ESTIMATOR-NULL"
+    },
+    {
+      "claim_id": "C-36",
+      "paper_item": "Sec. 2.6",
+      "statement": "The policy is compared against the standard of care and two classical constrained controllers.",
+      "code_ref": "policy/rollout.py:rollout_path_follower",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-POL-04, EX-POL-05, EX-POL-06"
+    },
+    {
+      "claim_id": "C-37",
+      "paper_item": "Table 5 panel (b)",
+      "statement": "A soft actor-critic and a latent world-model planner are reproduced on the same held-out set.",
+      "code_ref": "policy/sac.py:SoftActorCritic",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-POL-07 to EX-POL-10"
+    },
+    {
+      "claim_id": "C-38",
+      "paper_item": "Sec. 4.5",
+      "statement": "The policy learned on the released substrate is a diffusion policy.",
+      "code_ref": "policy/diffusion_policy.py:DiffusionPolicy",
+      "status": "IMPLEMENTED",
+      "evidence": "EX-POL-11, EX-POL-12"
+    },
+    {
+      "claim_id": "C-39",
+      "paper_item": "Supplementary Table T7 panel D",
+      "statement": "The window ladder is measured against a single-step charge.",
+      "code_ref": "coupling/prefix_sum.py:composition_multiplier_ladder",
+      "status": "IMPLEMENTED",
+      "evidence": "MS-T7D-COST-POLYLOG"
+    },
+    {
+      "claim_id": "C-40",
+      "paper_item": "Supplementary Table SC1",
+      "statement": "Perturbation families degrade the substrate monotonically.",
+      "code_ref": "verification/manuscript_tables.py:PERTURBATION_TABLE",
+      "status": "IMPLEMENTED",
+      "evidence": "MS-SC1-intensity"
+    },
+    {
+      "claim_id": "C-41",
+      "paper_item": "Table 1",
+      "statement": "Main comparison on the held-out test partition of 1,204 procedures.",
+      "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-01"
+    },
+    {
+      "claim_id": "C-42",
+      "paper_item": "Table 2",
+      "statement": "Privacy-utility frontier with MIA audit at parity utility.",
+      "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-01, EX-NR-01"
+    },
+    {
+      "claim_id": "C-43",
+      "paper_item": "Table 5 panel (a)",
+      "statement": "Policy, safety and clinical endpoints on held-out clinical trajectories.",
+      "code_ref": "policy/rollout.py:aggregate_strategy",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-06"
+    },
+    {
+      "claim_id": "C-44",
+      "paper_item": "Table 6",
+      "statement": "Per-site, per-region and per-arm consistency with subgroup analysis.",
+      "code_ref": "cohort/partition.py:SITE_HELD_OUT",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-04"
+    },
+    {
+      "claim_id": "C-45",
+      "paper_item": "Sec. 4.10",
+      "statement": "Reader validity across clinician, model and combined arms.",
+      "code_ref": "metrics/clinical.py:three_way_reader_contrast",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-03"
+    },
+    {
+      "claim_id": "C-46",
+      "paper_item": "Sec. 2.6",
+      "statement": "Bench-top phantom force envelope against the in-vivo perforation anchor.",
+      "code_ref": "metrics/safety.py:force_envelope_margin",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-05"
+    },
+    {
+      "claim_id": "C-47",
+      "paper_item": "Sec. 2.8",
+      "statement": "Coefficient of variation of the private mechanism over three training occasions.",
+      "code_ref": "analysis/variance.py:dispersion",
+      "status": "NOT_RUN",
+      "evidence": "EX-NR-02"
+    },
+    {
+      "claim_id": "C-48",
+      "paper_item": "Supplementary Table SC2",
+      "statement": "Power-law fit residuals of the scaling panel.",
+      "code_ref": "analysis/powerlaw.py:residuals_in_units",
+      "status": "NOT_RUN",
+      "evidence": "EX-NR-03, MS-SC2-FIT"
+    },
+    {
+      "claim_id": "C-49",
+      "paper_item": "Sec. 4.4",
+      "statement": "The 8.3B latent video diffusion transformer backbone.",
+      "code_ref": "branches/attention.py:PrivateAttentionBlock",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-02"
+    },
+    {
+      "claim_id": "C-50",
+      "paper_item": "Sec. 4.2",
+      "statement": "Expert vessel annotations define the Dice and Hausdorff reference.",
+      "code_ref": "runner/batching.py:vessel_mask",
+      "status": "BLOCKED",
+      "evidence": "EX-BLK-03"
+    }
+  ]
+}

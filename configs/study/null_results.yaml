@@ -1,0 +1,11 @@
+study: null_results
+base: caps_main
+description: >
+  Multiplicity and retained null results. Three pre-specified primaries are corrected with
+  Holm and the exploratory inventory with Benjamini-Hochberg at a false discovery rate of 0.05.
+comparisons:
+  null_fence_relative: 0.010
+  primaries: 3
+  exploratory: 23
+  fdr: 0.05
+  retention_rule: report a retained null result when the relative change stays inside the fence

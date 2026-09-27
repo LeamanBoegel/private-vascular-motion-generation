@@ -1,0 +1,20 @@
+# Cohort declaration for the study arms.
+#
+# The private multi-centre procedures are not exportable, so no cohort-level endpoint can be
+# measured here. Every arm therefore runs on the schema-compatible substrate declared below,
+# which reproduces the tensor contract of the acquisition section without any real record.
+# The accrued counts, held-out slices and force-channel coverage of the private cohort are
+# declared once, in `cohort/partition.py`, and checked against the manuscript transcription by
+# the manuscript layer of the verification driver.
+label: multicentre_private
+acquisition:
+  appearance_tensor: HxWxT
+  motion_channels: 6
+  motion_rate_hz: 15.0
+  transient_rate_hz: 0.25
+compatible_substrate:
+  generator: schema_compatible_fixture
+  per_site: {A: 9, B: 7, C: 4}
+  height: 32
+  width: 32
+  frames: 16

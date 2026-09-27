@@ -1,0 +1,3201 @@
+{
+  "overall_status": "PARTIALLY_VERIFIED",
+  "counts": {
+    "PASS": 195,
+    "FAIL": 2,
+    "NOT_RUN": 3,
+    "BLOCKED": 6
+  },
+  "manuscript_family_status": "FAIL",
+  "execution_family_status": "PARTIALLY_BLOCKED",
+  "execution_layer": {
+    "counts": {
+      "PASS": 99,
+      "FAIL": 0,
+      "NOT_RUN": 3,
+      "BLOCKED": 6
+    },
+    "manuscript_family_status": "NOT_RUN",
+    "execution_family_status": "PARTIALLY_BLOCKED",
+    "overall_status": "PARTIALLY_VERIFIED",
+    "discrepancies": [],
+    "results": [
+      {
+        "id": "EX-DATA-01",
+        "family": "code_execution",
+        "description": "cohort fixture exposes the paired tensor contract of the protocol",
+        "source": "Sec. 4.3",
+        "code_ref": "cohort/fixture.py:default_fixture",
+        "status": "PASS",
+        "observed": {
+          "procedures": 20,
+          "appearance_shape": [
+            20,
+            32,
+            32,
+            16
+          ],
+          "motion_shape": [
+            20,
+            6,
+            16
+          ],
+          "expected_motion_dim": 6,
+          "force_covered": 16
+        },
+        "expected": {
+          "procedures": 20,
+          "appearance_shape": [
+            20,
+            32,
+            32,
+            16
+          ],
+          "motion_shape": [
+            20,
+            6,
+            16
+          ]
+        },
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-02",
+        "family": "code_execution",
+        "description": "procedure record reads back the six motion channels in the declared order",
+        "source": "Sec. 4.2",
+        "code_ref": "cohort/procedure.py:ProcedureRecord",
+        "status": "PASS",
+        "observed": [
+          5.0,
+          16.0
+        ],
+        "expected": [
+          5,
+          16
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-03",
+        "family": "code_execution",
+        "description": "the site-stratified split is procedure-level, disjoint and region-consistent",
+        "source": "Sec. 4.2",
+        "code_ref": "cohort/partition.py:default_partition",
+        "status": "PASS",
+        "observed": {
+          "held_out": 1204,
+          "regions": {
+            "I": 866,
+            "II": 338
+          }
+        },
+        "expected": {
+          "held_out": 1204,
+          "regions": {
+            "I": 866,
+            "II": 338
+          }
+        },
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-04",
+        "family": "code_execution",
+        "description": "leave-one-site-out external stratum carries its own equipment family",
+        "source": "Sec. 4.2",
+        "code_ref": "cohort/partition.py:site_strata",
+        "status": "PASS",
+        "observed": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected": [
+          "A",
+          "B",
+          "C"
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-05",
+        "family": "code_execution",
+        "description": "diagnostic-frame selection returns the mask, peak and transient frames",
+        "source": "Sec. 4.10",
+        "code_ref": "cohort/frames.py:select_diagnostic_frames",
+        "status": "PASS",
+        "observed": {
+          "mask": 2,
+          "peak": 2,
+          "transient": 1
+        },
+        "expected": "non-empty on all three families",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-06",
+        "family": "code_execution",
+        "description": "contact events are counted on the force trace after the debounce rule",
+        "source": "Sec. 4.10",
+        "code_ref": "cohort/force_channel.py:count_contact_events",
+        "status": "PASS",
+        "observed": {
+          "events": 1,
+          "peak": 0.319
+        },
+        "expected": "at least one event on a built contact pattern",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-DATA-07",
+        "family": "code_execution",
+        "description": "force-duration integral is finite and positive on the fixture trace",
+        "source": "Sec. 4.10",
+        "code_ref": "cohort/force_channel.py:force_duration_integral",
+        "status": "PASS",
+        "observed": 0.080014,
+        "expected": "> 0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-FWD-01",
+        "family": "code_execution",
+        "description": "paired batch collates to the shapes the branches consume",
+        "source": "Sec. 4.3",
+        "code_ref": "runner/batching.py:batch_from_records",
+        "status": "PASS",
+        "observed": [
+          [
+            6,
+            16,
+            32,
+            32
+          ],
+          [
+            6,
+            6,
+            16
+          ]
+        ],
+        "expected": [
+          [
+            6,
+            16,
+            32,
+            32
+          ],
+          [
+            6,
+            6,
+            16
+          ]
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-FWD-02",
+        "family": "code_execution",
+        "description": "appearance branch returns centreline logits at the acquired extent",
+        "source": "Sec. 4.5",
+        "code_ref": "branches/appearance.py:segmentation_head",
+        "status": "PASS",
+        "observed": [
+          [
+            6,
+            1,
+            32,
+            32
+          ],
+          [
+            6,
+            1024
+          ]
+        ],
+        "expected": [
+          [
+            6,
+            1,
+            32,
+            32
+          ],
+          [
+            6,
+            1024
+          ]
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-FWD-03",
+        "family": "code_execution",
+        "description": "flow-matching head maps the six-channel motion to the velocity field",
+        "source": "Sec. 4.4",
+        "code_ref": "branches/motion.py:head_from_tokens",
+        "status": "PASS",
+        "observed": [
+          6,
+          6,
+          16
+        ],
+        "expected": [
+          6,
+          6,
+          16
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-LOSS-01",
+        "family": "code_execution",
+        "description": "the concatenated residual carries one finite entry per procedure and per branch",
+        "source": "Algorithm 1 step 6",
+        "code_ref": "branches/pairing.py:per_procedure_residuals",
+        "status": "PASS",
+        "observed": [
+          1.577309,
+          1.408673
+        ],
+        "expected": "finite and positive",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-LOSS-02",
+        "family": "code_execution",
+        "description": "both branches contribute to the concatenated objective",
+        "source": "Algorithm 1 step 6",
+        "code_ref": "runner/overfit.py:branch_balance",
+        "status": "PASS",
+        "observed": {
+          "appearance": 1.5773,
+          "motion": 1.2132,
+          "share_appearance": 0.5652
+        },
+        "expected": "share of each branch inside (0.05, 0.95)",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-BWD-01",
+        "family": "code_execution",
+        "description": "per-procedure gradient forms the procedures x d x micro-step workload",
+        "source": "Algorithm 1 step 6, Eq. (2)",
+        "code_ref": "branches/pairing.py:per_procedure_workload",
+        "status": "PASS",
+        "observed": [
+          6,
+          1024,
+          16
+        ],
+        "expected": [
+          6,
+          1024,
+          16
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-BWD-02",
+        "family": "code_execution",
+        "description": "aggregation collapses the procedure axis exactly once",
+        "source": "Algorithm 1 step 10",
+        "code_ref": "branches/pairing.py:aggregate_workload",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": "< 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CLIP-01",
+        "family": "code_execution",
+        "description": "one clipping pass bounds every procedure norm by the declared clipping norm",
+        "source": "Algorithm 1 step 8, Sec. 4.4",
+        "code_ref": "accounting/clipping.py:clip_workload",
+        "status": "PASS",
+        "observed": [
+          0.056888,
+          1.0
+        ],
+        "expected": [
+          0.85,
+          "< 1"
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CLIP-02",
+        "family": "code_execution",
+        "description": "clipping is idempotent, so a second pass would not change the workload",
+        "source": "Algorithm 1 step 8",
+        "code_ref": "accounting/clipping.py:clip_procedure_gradient",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": "< 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CLIP-03",
+        "family": "code_execution",
+        "description": "a single-norm clip is taken once per procedure before noise is drawn",
+        "source": "Sec. 4.4",
+        "code_ref": "accounting/clipping.py:clip_procedure_gradient",
+        "status": "PASS",
+        "observed": [
+          true,
+          0.0664
+        ],
+        "expected": [
+          true,
+          "< 1"
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-UPD-01",
+        "family": "code_execution",
+        "description": "the privatised block moves by exactly the learning rate on a unit workload",
+        "source": "Algorithm 1 step 12",
+        "code_ref": "runner/trainer.py:CAPSTrainer.run",
+        "status": "PASS",
+        "observed": 0.01,
+        "expected": 0.01,
+        "tolerance": 1e-06,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-01",
+        "family": "code_execution",
+        "description": "the coupling basis is orthonormal to numerical precision",
+        "source": "Algorithm 2 step 8",
+        "code_ref": "geometry/projector.py:projector_residual",
+        "status": "PASS",
+        "observed": 1.6e-07,
+        "expected": "< 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-02",
+        "family": "code_execution",
+        "description": "the projector is idempotent, so the residual complement is well defined",
+        "source": "Eq. (1)",
+        "code_ref": "geometry/projector.py:CouplingProjector.apply",
+        "status": "PASS",
+        "observed": 3e-08,
+        "expected": "< 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-03",
+        "family": "code_execution",
+        "description": "the precision matrix carries the two declared multipliers on the two subspaces",
+        "source": "Eq. (1)",
+        "code_ref": "geometry/shaped_covariance.py:ShapedCovariance.precision",
+        "status": "PASS",
+        "observed": [
+          1e-08,
+          1e-08
+        ],
+        "expected": "both < 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-04",
+        "family": "code_execution",
+        "description": "the shaped sampler reproduces the analytic covariance empirically",
+        "source": "Eq. (1), Eq. (2)",
+        "code_ref": "geometry/shaped_covariance.py:sample_shaped_noise",
+        "status": "PASS",
+        "observed": 0.2131,
+        "expected": 2.0,
+        "tolerance": 2.0,
+        "note": "the tolerance is the sampling spread of a single covariance entry at this sample count, not the distance the shaped sampler would show if it ignored the subspace"
+      },
+      {
+        "id": "EX-GEO-05",
+        "family": "code_execution",
+        "description": "the analytic trace matches the rank-weighted multiplier sum",
+        "source": "Eq. (1)",
+        "code_ref": "geometry/shaped_covariance.py:ShapedCovariance.trace",
+        "status": "PASS",
+        "observed": 197.76,
+        "expected": 197.76001,
+        "tolerance": 0.001,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-06",
+        "family": "code_execution",
+        "description": "shaped noise is admissible across the whole concentration range",
+        "source": "Eq. (4), Sec. 4.6",
+        "code_ref": "geometry/shaped_covariance.py:anisotropy_admissible",
+        "status": "PASS",
+        "observed": true,
+        "expected": true,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-07",
+        "family": "code_execution",
+        "description": "the shaped arm converts to a smaller noise-normalised sensitivity than the isotropic arm",
+        "source": "Eq. (4), Sec. 2.2",
+        "code_ref": "geometry/shaped_covariance.py:normalised_sensitivity",
+        "status": "PASS",
+        "observed": [
+          0.2498,
+          0.30447
+        ],
+        "expected": "shaped below isotropic",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-08",
+        "family": "code_execution",
+        "description": "the isotropic expression collapses to the shaped one when the multipliers agree",
+        "source": "Eq. (4)",
+        "code_ref": "geometry/shaped_covariance.py:normalised_sensitivity_isotropic",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": "< 1e-12",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-GEO-09",
+        "family": "code_execution",
+        "description": "the measured off-coupling energy ratio is a partition of the gradient energy",
+        "source": "Sec. 4.4, Table 3 caption",
+        "code_ref": "geometry/concentration.py:concentration_from_gradients",
+        "status": "PASS",
+        "observed": [
+          0.781307,
+          0.781307
+        ],
+        "expected": "both agree and lie in [0, 1]",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-01",
+        "family": "code_execution",
+        "description": "the integer closed form agrees with the independent quadrature of the same divergence",
+        "source": "Eq. (3)",
+        "code_ref": "accounting/renyi.py:rdp_binomial_integer",
+        "status": "PASS",
+        "observed": [
+          0.00021019869475,
+          0.00021019869475
+        ],
+        "expected": "relative agreement below 1e-9",
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-02",
+        "family": "code_execution",
+        "description": "at unit sampling rate the charge equals the Gaussian closed form alpha / (2 sigma^2)",
+        "source": "Eq. (3)",
+        "code_ref": "accounting/renyi.py:rdp_binomial_integer",
+        "status": "PASS",
+        "observed": 0.444444444444,
+        "expected": 0.444444444444,
+        "tolerance": 1e-12,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-03",
+        "family": "code_execution",
+        "description": "the reported budget falls as the noise multiplier rises",
+        "source": "Eq. (3)",
+        "code_ref": "accounting/renyi.py:epsilon_at_parity",
+        "status": "PASS",
+        "observed": [
+          0.401924,
+          1.780524
+        ],
+        "expected": "high noise gives the smaller budget",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-04",
+        "family": "code_execution",
+        "description": "composition is additive in the round count at a fixed order grid",
+        "source": "Eq. (3)",
+        "code_ref": "accounting/renyi.py:composed_rdp",
+        "status": "PASS",
+        "observed": [
+          0.823689,
+          1.170428
+        ],
+        "expected": "longer run costs more",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-05",
+        "family": "code_execution",
+        "description": "the conversion picks the order that minimises the reported epsilon",
+        "source": "Eq. (3)",
+        "code_ref": "accounting/renyi.py:convert_to_epsilon",
+        "status": "PASS",
+        "observed": [
+          4.0,
+          7.087642
+        ],
+        "expected": "order inside the grid and epsilon finite",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-ACC-06",
+        "family": "code_execution",
+        "description": "the prefix-window slack raises the converted budget polylogarithmically",
+        "source": "Eq. (3), Sec. 4.6",
+        "code_ref": "accounting/renyi.py:prefix_amplification_term",
+        "status": "PASS",
+        "observed": [
+          8.185479,
+          19.126969
+        ],
+        "expected": "longer window costs more",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-01",
+        "family": "code_execution",
+        "description": "the canonical directions solve the generalised eigenvalue problem of the head",
+        "source": "Sec. 4.4, Algorithm 2 step 6",
+        "code_ref": "coupling/cca.py:generalised_eigen_residual",
+        "status": "PASS",
+        "observed": 2.64e-06,
+        "expected": "< 1e-5",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-02",
+        "family": "code_execution",
+        "description": "canonical correlations lie in the unit interval and decrease along the spectrum",
+        "source": "Algorithm 2 step 7",
+        "code_ref": "coupling/cca.py:solve_canonical",
+        "status": "PASS",
+        "observed": [
+          0.999973,
+          0.986109
+        ],
+        "expected": "inside [0, 1] and non-increasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-03",
+        "family": "code_execution",
+        "description": "the coupling loss is the negative mean squared leading correlation",
+        "source": "Algorithm 1 step 7",
+        "code_ref": "coupling/cca.py:coupling_loss",
+        "status": "PASS",
+        "observed": -0.999833,
+        "expected": -0.999833,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-04",
+        "family": "code_execution",
+        "description": "the prefix-sum factorisation inverts exactly",
+        "source": "Sec. 4.4",
+        "code_ref": "coupling/prefix_sum.py:prefix_sum_inverse",
+        "status": "PASS",
+        "observed": 1.9e-07,
+        "expected": "< 1e-6",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-05",
+        "family": "code_execution",
+        "description": "the windowed workload keeps procedures on rows and micro-steps on columns",
+        "source": "Algorithm 1 step 10",
+        "code_ref": "coupling/prefix_sum.py:windowed_workload",
+        "status": "PASS",
+        "observed": [
+          5,
+          32
+        ],
+        "expected": [
+          5,
+          32
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-COUP-06",
+        "family": "code_execution",
+        "description": "the shared latent is unit-norm per procedure and identical for both branches",
+        "source": "Sec. 4.4",
+        "code_ref": "coupling/latent.py:draw_latent",
+        "status": "PASS",
+        "observed": [
+          1.0,
+          1.0
+        ],
+        "expected": [
+          1.0,
+          1.0
+        ],
+        "tolerance": 1e-05,
+        "note": ""
+      },
+      {
+        "id": "EX-EST-01",
+        "family": "code_execution",
+        "description": "the estimator returns a frozen subspace of the declared rank",
+        "source": "Algorithm 2 step 7",
+        "code_ref": "estimator/reference_estimator.py:ReferenceShapingEstimator.fit",
+        "status": "PASS",
+        "observed": [
+          12,
+          1024
+        ],
+        "expected": [
+          12,
+          32
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-EST-02",
+        "family": "code_execution",
+        "description": "the estimator never reads a private identifier",
+        "source": "Sec. 4.4 (estimator-disjointness)",
+        "code_ref": "cohort/reference.py:assert_estimator_disjointness",
+        "status": "PASS",
+        "observed": [],
+        "expected": [],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-EST-03",
+        "family": "code_execution",
+        "description": "the estimator pass is charged at O(B_ref d^2) per minibatch",
+        "source": "Sec. 4.7",
+        "code_ref": "estimator/reference_estimator.py:cost_estimate",
+        "status": "PASS",
+        "observed": 6291456,
+        "expected": 6291456,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-01",
+        "family": "code_execution",
+        "description": "the measured off-coupling ratio on held-out records is a genuine mid-range quantity",
+        "source": "Sec. 4.4, Table 3",
+        "code_ref": "geometry/concentration.py:concentration_from_gradients",
+        "status": "PASS",
+        "observed": 0.6862,
+        "expected": "inside (0.01, 0.99)",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-02",
+        "family": "code_execution",
+        "description": "the private pass completes and reports a finite complete privacy tuple",
+        "source": "Algorithm 1 step 17, Sec. 4.6",
+        "code_ref": "runner/trainer.py:CAPSTrainer.run",
+        "status": "PASS",
+        "observed": {
+          "epsilon": 0.4469100158178087,
+          "delta": 1e-05,
+          "accountant": "renyi",
+          "order": 64.0,
+          "steps_times_sampling": 0.0584,
+          "clipping_norm": 0.85,
+          "sigma_parallel": 5.4,
+          "sigma_perpendicular": 2.6,
+          "rank": 12,
+          "dimension": 1024,
+          "rho": 0.6841454856261366,
+          "privacy_unit": "procedure",
+          "composition_unit": "procedure_window",
+          "notes": {
+            "sampling_rate": "engineering default, not stated in the manuscript"
+          }
+        },
+        "expected": "finite epsilon and complete tuple",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-03",
+        "family": "code_execution",
+        "description": "the measured ratio is recorded per round rather than averaged across arms",
+        "source": "Table 3 caption",
+        "code_ref": "runner/trainer.py:TrainingRun.rho_trace",
+        "status": "PASS",
+        "observed": [
+          0.68555,
+          0.68316,
+          0.68233,
+          0.68554
+        ],
+        "expected": "one entry per round",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-04",
+        "family": "code_execution",
+        "description": "the private update is not clipped after noise is drawn",
+        "source": "Sec. 4.6",
+        "code_ref": "accounting/clipping.py:no_post_noise_clipping",
+        "status": "PASS",
+        "observed": 7512.8276,
+        "expected": "noise magnitude is left untouched",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-05",
+        "family": "code_execution",
+        "description": "the substrate specification carries the paper's multipliers, rank and clipping norm",
+        "source": "Eq. (1), Table 2",
+        "code_ref": "substrate/__init__.py:SubstrateSpec",
+        "status": "PASS",
+        "observed": [
+          5.4,
+          2.6,
+          12,
+          0.85
+        ],
+        "expected": [
+          5.4,
+          2.6,
+          12,
+          0.85
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-06",
+        "family": "code_execution",
+        "description": "release decodes both branches from the projected code",
+        "source": "Algorithm 1 step 16",
+        "code_ref": "substrate/__init__.py:release_substrate",
+        "status": "PASS",
+        "observed": [
+          [
+            4,
+            16,
+            32,
+            32
+          ],
+          [
+            4,
+            6,
+            16
+          ]
+        ],
+        "expected": [
+          [
+            4,
+            16,
+            32,
+            32
+          ],
+          [
+            4,
+            6,
+            16
+          ]
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MECH-07",
+        "family": "code_execution",
+        "description": "release is pure post-processing: identical codes decode identically",
+        "source": "Sec. 4.6",
+        "code_ref": "substrate/__init__.py:release_is_post_processing",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": "< 1e-9",
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-TRAIN-01",
+        "family": "code_execution",
+        "description": "a single paired batch is fit: the residual falls by a wide margin",
+        "source": "Sec. 4.5",
+        "code_ref": "runner/overfit.py:SingleBatchFit.run",
+        "status": "PASS",
+        "observed": 0.9638,
+        "expected": 0.1,
+        "tolerance": 0.1,
+        "note": ""
+      },
+      {
+        "id": "EX-TRAIN-02",
+        "family": "code_execution",
+        "description": "the fit resolves both the appearance and the motion branch",
+        "source": "Sec. 4.5",
+        "code_ref": "runner/overfit.py:branch_balance",
+        "status": "PASS",
+        "observed": {
+          "appearance": 1.27477,
+          "motion": 0.18642,
+          "share_appearance": 0.87242
+        },
+        "expected": "both branch residuals fall below their starting values",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-TRAIN-03",
+        "family": "code_execution",
+        "description": "the final tenth of the trace sits below the opening tenth",
+        "source": "Sec. 4.5",
+        "code_ref": "runner/overfit.py:SingleBatchFit.run",
+        "status": "PASS",
+        "observed": -39.842395,
+        "expected": "< 0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CKPT-01",
+        "family": "code_execution",
+        "description": "the privatised block survives an atomic save and load round trip",
+        "source": "Sec. 4.6",
+        "code_ref": "runner/checkpoint.py:save_checkpoint",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": "< 1e-12",
+        "tolerance": 1e-12,
+        "note": ""
+      },
+      {
+        "id": "EX-CKPT-02",
+        "family": "code_execution",
+        "description": "the seed travels inside the checkpoint and restores the run",
+        "source": "Sec. 4.9",
+        "code_ref": "runner/checkpoint.py:seed_state_from",
+        "status": "PASS",
+        "observed": 19,
+        "expected": 19,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CKPT-03",
+        "family": "code_execution",
+        "description": "a resumed run restores the declared initialisation budget",
+        "source": "Sec. 4.9",
+        "code_ref": "runner/checkpoint.py:CheckpointMeta",
+        "status": "PASS",
+        "observed": 20,
+        "expected": 20,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-CKPT-04",
+        "family": "code_execution",
+        "description": "a freshly written checkpoint carries no privacy statement, and an absent one is not reported as a zero budget",
+        "source": "Sec. 4.6",
+        "code_ref": "runner/checkpoint.py:privacy_tuple_from",
+        "status": "PASS",
+        "observed": {
+          "stored": {},
+          "rebuilt": null
+        },
+        "expected": {
+          "stored": {},
+          "rebuilt": null
+        },
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-01",
+        "family": "code_execution",
+        "description": "FID between a cloud and a near copy of itself stays small",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/fidelity.py:frechet_distance",
+        "status": "PASS",
+        "observed": 0.000813,
+        "expected": "< 1.0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-02",
+        "family": "code_execution",
+        "description": "FID reduces to the squared mean gap for degenerate one-dimensional clouds",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/fidelity.py:frechet_distance",
+        "status": "PASS",
+        "observed": 1.0,
+        "expected": 1.0,
+        "tolerance": 1e-06,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-03",
+        "family": "code_execution",
+        "description": "FID is not invariant to a constant shift of the generated cloud",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/fidelity.py:frechet_distance",
+        "status": "PASS",
+        "observed": 150.0,
+        "expected": "> 1.0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-04",
+        "family": "code_execution",
+        "description": "the kernel distance separates a near copy from a shifted cloud",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/fidelity.py:polynomial_mmd",
+        "status": "PASS",
+        "observed": [
+          -0.3819854,
+          17964.83082409
+        ],
+        "expected": "shifted cloud gives the larger value",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-05",
+        "family": "code_execution",
+        "description": "SSIM is higher against a near copy than against an unrelated image",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/fidelity.py:structural_similarity",
+        "status": "PASS",
+        "observed": [
+          0.9994,
+          0.0092
+        ],
+        "expected": "near copy above unrelated image",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-06",
+        "family": "code_execution",
+        "description": "Dice is one for an exact overlap and zero for a disjoint pair",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/segmentation.py:dice_overlap",
+        "status": "PASS",
+        "observed": [
+          1.0,
+          0.0
+        ],
+        "expected": [
+          1.0,
+          "< dice of the overlapping pair"
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-07",
+        "family": "code_execution",
+        "description": "the robust Hausdorff distance vanishes for identical masks",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/segmentation.py:percentile_hausdorff",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": 0.0,
+        "tolerance": 1e-08,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-08",
+        "family": "code_execution",
+        "description": "trajectory errors vanish against the recorded trajectory and grow under a shift",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/trajectory.py:average_displacement_error",
+        "status": "PASS",
+        "observed": [
+          0.0,
+          1.732051
+        ],
+        "expected": [
+          0.0,
+          1.0
+        ],
+        "tolerance": 1e-06,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-09",
+        "family": "code_execution",
+        "description": "the banded dynamic-time-warping distance matches an unbanded reference recursion",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/trajectory.py:dynamic_time_warping",
+        "status": "PASS",
+        "observed": [
+          0.17320508,
+          0.17320508
+        ],
+        "expected": "agreement below 1e-9",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-10",
+        "family": "code_execution",
+        "description": "final displacement error reads the terminal tip offset",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/trajectory.py:final_displacement_error",
+        "status": "PASS",
+        "observed": 1.73205078,
+        "expected": 1.73205078,
+        "tolerance": 1e-06,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-11",
+        "family": "code_execution",
+        "description": "path-length efficiency is one when the device follows the centreline exactly",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/trajectory.py:path_length_efficiency",
+        "status": "PASS",
+        "observed": 1.0,
+        "expected": 1.0,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-12",
+        "family": "code_execution",
+        "description": "the safety row counts the planted contact events and reads the peak force",
+        "source": "Sec. 4.10, Table 5",
+        "code_ref": "metrics/safety.py:safety_from_rollouts",
+        "status": "PASS",
+        "observed": [
+          2.0,
+          0.3
+        ],
+        "expected": [
+          2.0,
+          0.3
+        ],
+        "tolerance": 1e-06,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-13",
+        "family": "code_execution",
+        "description": "the normalised contact column is a rate and not a rescaling of the per-procedure column",
+        "source": "Table 5 caption",
+        "code_ref": "metrics/safety.py:SafetyRow.contacts_per_thousand_frames",
+        "status": "PASS",
+        "observed": 33.333333,
+        "expected": 33.333333,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-14",
+        "family": "code_execution",
+        "description": "the force envelope margin reproduces the published relative reduction",
+        "source": "Sec. 2.6",
+        "code_ref": "metrics/safety.py:force_envelope_margin",
+        "status": "PASS",
+        "observed": 0.4605,
+        "expected": 0.4605,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-MET-15",
+        "family": "code_execution",
+        "description": "the Wilson interval matches an independently inverted score test",
+        "source": "Table 6 caption",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.90914087,
+          0.95657367
+        ],
+        "expected": [
+          0.90914087,
+          0.95657367
+        ],
+        "tolerance": 1e-08,
+        "note": ""
+      },
+      {
+        "id": "EX-AUD-01",
+        "family": "code_execution",
+        "description": "the membership-inference interval brackets the no-advantage reference on shifted scores",
+        "source": "Sec. 2.2",
+        "code_ref": "audit/membership.py:member_nonmember_auc",
+        "status": "PASS",
+        "observed": [
+          0.58,
+          0.4964,
+          0.6636
+        ],
+        "expected": "interval contains 0.500",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-AUD-02",
+        "family": "code_execution",
+        "description": "the frequency-calibrated statistic re-centres each intensity bin",
+        "source": "Sec. 2.2",
+        "code_ref": "audit/membership.py:frequency_calibrated_scores",
+        "status": "PASS",
+        "observed": -0.0,
+        "expected": "near zero after bin-wise centring",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-AUD-03",
+        "family": "code_execution",
+        "description": "the distance-to-closest-record diagnostic detects planted near duplicates",
+        "source": "Sec. 2.2",
+        "code_ref": "audit/distance.py:distance_to_closest_record",
+        "status": "PASS",
+        "observed": 0.003104,
+        "expected": "< 0.05",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-01",
+        "family": "code_execution",
+        "description": "the area statistic reproduces the rank-sum definition on a hand-checked vector",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/delong.py:auc",
+        "status": "PASS",
+        "observed": 1.0,
+        "expected": 1.0,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-02",
+        "family": "code_execution",
+        "description": "the DeLong interval brackets the point estimate and stays inside the unit square",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/delong.py:delong_interval",
+        "status": "PASS",
+        "observed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "expected": "low <= auc <= high inside [0, 1]",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-03",
+        "family": "code_execution",
+        "description": "the factorial contrasts recompute from the printed cells",
+        "source": "Table 3",
+        "code_ref": "analysis/factorial.py:full_contrast_table",
+        "status": "PASS",
+        "observed": {
+          "fid": -9.65,
+          "dtw": -0.1,
+          "contact_event_f1": 0.0845
+        },
+        "expected": {
+          "fid": -9.65,
+          "dtw": -0.1,
+          "contact_event_f1": -0.0845
+        },
+        "tolerance": 0.001,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-04",
+        "family": "code_execution",
+        "description": "the permutation test separates a shifted pair from its own sign flips",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/resampling.py:paired_permutation_test",
+        "status": "PASS",
+        "observed": 0.001,
+        "expected": "< 0.05",
+        "tolerance": null,
+        "note": "a five-pair shift cannot reach 0.05 exactly under sign flipping, so the check carries twelve pairs and a varied shift"
+      },
+      {
+        "id": "EX-AN-05",
+        "family": "code_execution",
+        "description": "the signed-rank statistic reports the smaller of the two rank sums",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/resampling.py:wilcoxon_signed_rank",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": 0.0,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-06",
+        "family": "code_execution",
+        "description": "the two-proportion statistic recovers the printed standard-of-care comparison",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/resampling.py:two_proportion_z",
+        "status": "PASS",
+        "observed": [
+          4.15,
+          4.65
+        ],
+        "expected": [
+          4.13,
+          4.65
+        ],
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-07",
+        "family": "code_execution",
+        "description": "the Holm step-down multiplies the smallest p-value by the number of comparisons",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/multiplicity.py:holm_bonferroni",
+        "status": "PASS",
+        "observed": 0.0003,
+        "expected": 0.0003,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-08",
+        "family": "code_execution",
+        "description": "the Benjamini-Hochberg step-up enforces a monotone corrected sequence",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/multiplicity.py:benjamini_hochberg",
+        "status": "PASS",
+        "observed": [
+          0.004,
+          0.04,
+          0.4,
+          0.9
+        ],
+        "expected": "non-decreasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-AN-09",
+        "family": "code_execution",
+        "description": "the audit statistic is centred on no advantage when members and non-members come from one law",
+        "source": "Sec. 2.2",
+        "code_ref": "audit/membership.py:member_nonmember_auc",
+        "status": "PASS",
+        "observed": 0.4947,
+        "expected": 0.5,
+        "tolerance": 0.06,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-01",
+        "family": "code_execution",
+        "description": "the barrier filter substitutes an action that keeps the constraint non-decreasing",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/classical.py:control_barrier_filter",
+        "status": "PASS",
+        "observed": [
+          true,
+          -0.019
+        ],
+        "expected": "intervention on a near-wall action",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-02",
+        "family": "code_execution",
+        "description": "the barrier filter leaves a safe nominal action untouched",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/classical.py:control_barrier_filter",
+        "status": "PASS",
+        "observed": false,
+        "expected": false,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-03",
+        "family": "code_execution",
+        "description": "the potential field combines attraction with a short-range repulsion",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/classical.py:potential_field_action",
+        "status": "PASS",
+        "observed": -14.999999,
+        "expected": "< 1.0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-04",
+        "family": "code_execution",
+        "description": "the nominal crossing strategy runs and reports finite safety traces",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/rollout.py:rollout_path_follower",
+        "status": "PASS",
+        "observed": [
+          15,
+          5.4093
+        ],
+        "expected": "non-empty finite trace",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-05",
+        "family": "code_execution",
+        "description": "the filtered strategy never exceeds the unfiltered peak contact force",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/rollout.py:rollout_path_follower",
+        "status": "PASS",
+        "observed": [
+          2.432771,
+          5.409328
+        ],
+        "expected": "filtered peak at or below the nominal peak",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-06",
+        "family": "code_execution",
+        "description": "the reactive potential-field avoider runs against the wall samples",
+        "source": "Table 5 panel (a)",
+        "code_ref": "policy/rollout.py:rollout_potential_field",
+        "status": "PASS",
+        "observed": 15,
+        "expected": "> 0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-07",
+        "family": "code_execution",
+        "description": "the reproduced soft actor-critic takes a finite update on a replay batch",
+        "source": "Table 5 panel (b)",
+        "code_ref": "policy/sac.py:SoftActorCritic.update",
+        "status": "PASS",
+        "observed": {
+          "critic_loss": 12.128881,
+          "actor_loss": -1.814016,
+          "alpha": 0.9997
+        },
+        "expected": "finite losses and positive temperature",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-08",
+        "family": "code_execution",
+        "description": "the soft actor-critic rolls out on the held-out centreline",
+        "source": "Table 5 panel (b)",
+        "code_ref": "policy/sac.py:rollout_sac",
+        "status": "PASS",
+        "observed": 15,
+        "expected": "> 0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-09",
+        "family": "code_execution",
+        "description": "the latent world model trains on the latent-consistency objective",
+        "source": "Table 5 panel (b)",
+        "code_ref": "policy/world_model.py:LatentPlanner.update",
+        "status": "PASS",
+        "observed": 2.034667,
+        "expected": "finite and positive",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-10",
+        "family": "code_execution",
+        "description": "the latent planner returns a bounded action from a random-shooting search",
+        "source": "Table 5 panel (b)",
+        "code_ref": "policy/world_model.py:LatentPlanner.plan",
+        "status": "PASS",
+        "observed": [
+          [
+            3
+          ],
+          0.3783
+        ],
+        "expected": "three-dimensional action inside the unit cube",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-11",
+        "family": "code_execution",
+        "description": "the diffusion policy takes a finite epsilon-prediction loss",
+        "source": "Sec. 4.5",
+        "code_ref": "policy/diffusion_policy.py:DiffusionPolicy.training_loss",
+        "status": "PASS",
+        "observed": 0.962684,
+        "expected": "> 0",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-12",
+        "family": "code_execution",
+        "description": "the diffusion policy denoises a four-step action chunk",
+        "source": "Sec. 4.5",
+        "code_ref": "policy/diffusion_policy.py:DiffusionPolicy.sample",
+        "status": "PASS",
+        "observed": [
+          8,
+          4,
+          6
+        ],
+        "expected": [
+          8,
+          4,
+          6
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-13",
+        "family": "code_execution",
+        "description": "the tube geometry narrows toward the distal end",
+        "source": "Sec. 4.10",
+        "code_ref": "policy/environment.py:tube_from_centreline",
+        "status": "PASS",
+        "observed": 0.06,
+        "expected": "below the proximal radius",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-POL-14",
+        "family": "code_execution",
+        "description": "the environment resets to the proximal centreline point",
+        "source": "Sec. 4.8",
+        "code_ref": "policy/environment.py:EndovascularEnvironment.reset",
+        "status": "PASS",
+        "observed": 0.0,
+        "expected": 0.0,
+        "tolerance": 1e-09,
+        "note": ""
+      },
+      {
+        "id": "EX-BLK-01",
+        "family": "code_execution",
+        "description": "cohort-level fidelity and motion endpoints on the 1,204 held-out procedures",
+        "source": "Table 1",
+        "code_ref": "cohort/reference.py:ReferenceCorpus",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "the private multi-centre cohort is not exportable, so no held-out procedure is available here"
+      },
+      {
+        "id": "EX-BLK-02",
+        "family": "code_execution",
+        "description": "the 8.3B latent video diffusion transformer and its privatised attention modules",
+        "source": "Sec. 4.4, Sec. 4.5",
+        "code_ref": "branches/attention.py:PrivatisedTransformerStack",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "the reported backbone weights are not staged in this environment; the mechanism runs on the declared attention dimension of the schema-compatible configuration"
+      },
+      {
+        "id": "EX-BLK-03",
+        "family": "code_execution",
+        "description": "expert vessel annotations and the reader study",
+        "source": "Sec. 4.10",
+        "code_ref": "metrics/segmentation.py:dice_overlap",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "expert annotations and the nine readers belong to the private cohort"
+      },
+      {
+        "id": "EX-BLK-04",
+        "family": "code_execution",
+        "description": "cross-region and cross-vendor external validation",
+        "source": "Sec. 4.2, Table 6",
+        "code_ref": "cohort/partition.py:SITE_HELD_OUT",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "Site C procedures and the second equipment family are inside the private cohort"
+      },
+      {
+        "id": "EX-BLK-05",
+        "family": "code_execution",
+        "description": "the bench-top phantom force envelope and in-vivo perforation anchor",
+        "source": "Sec. 4.1, Sec. 2.6",
+        "code_ref": "metrics/safety.py:force_envelope_margin",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "the bench-top arm was measured on laboratory hardware that is not part of this release"
+      },
+      {
+        "id": "EX-BLK-06",
+        "family": "code_execution",
+        "description": "clinical endpoints under the retrospective supporting arm",
+        "source": "Table 5, Table 6 panel (a)",
+        "code_ref": "policy/rollout.py:aggregate_strategy",
+        "status": "BLOCKED",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "the matched trajectory control needs the accrued clinical trajectories"
+      },
+      {
+        "id": "EX-NR-01",
+        "family": "code_execution",
+        "description": "parity budget of the shaped arm at the reported precision",
+        "source": "Sec. 2.2",
+        "code_ref": "runner/trainer.py:CAPSTrainer.run",
+        "status": "NOT_RUN",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "the procedure-level sampling rate is not stated in the manuscript, so the accounting convention it implies cannot be rebuilt; the accountant identity itself is checked separately"
+      },
+      {
+        "id": "EX-NR-02",
+        "family": "code_execution",
+        "description": "the reported 12.7 / 0.67 / 5.45 percent coefficient of variation of the private mechanism",
+        "source": "Sec. 2.8",
+        "code_ref": "runner/seeding.py:SeedState.training_seeds",
+        "status": "NOT_RUN",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "three independent training occasions over the private cohort are required"
+      },
+      {
+        "id": "EX-NR-03",
+        "family": "code_execution",
+        "description": "the power-law residual column of the raw scaling table",
+        "source": "Supplementary Table SC2",
+        "code_ref": "analysis/powerlaw.py:fit_power_law",
+        "status": "NOT_RUN",
+        "observed": null,
+        "expected": null,
+        "tolerance": null,
+        "note": "rebuilt from the printed endpoints the residual scale differs by an order of magnitude, recorded as a manuscript-layer discrepancy"
+      },
+      {
+        "id": "EX-MAP-01",
+        "family": "code_execution",
+        "description": "every claim-to-code reference resolves to a live attribute of the package",
+        "source": "claim_to_code.json",
+        "code_ref": "verification/reporting.py:CLAIM_MAPPINGS",
+        "status": "PASS",
+        "observed": 50,
+        "expected": 50,
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "EX-MAP-02",
+        "family": "code_execution",
+        "description": "every execution check cited as claim evidence exists in this release",
+        "source": "claim_to_code.json",
+        "code_ref": "verification/execution_checks.py:_evidence_identifiers",
+        "status": "PASS",
+        "observed": 0,
+        "expected": 0,
+        "tolerance": null,
+        "note": ""
+      }
+    ]
+  },
+  "manuscript_layer": {
+    "counts": {
+      "PASS": 96,
+      "FAIL": 2,
+      "NOT_RUN": 0,
+      "BLOCKED": 0
+    },
+    "manuscript_family_status": "FAIL",
+    "execution_family_status": "NOT_RUN",
+    "overall_status": "UNVERIFIED",
+    "discrepancies": [
+      {
+        "id": "MS-SC2-FIT",
+        "family": "manuscript_arithmetic",
+        "description": "the raw scaling data admit a power law with the printed residual order",
+        "source": "Supplementary Table SC2",
+        "code_ref": "analysis/powerlaw.py:residuals_in_units",
+        "status": "FAIL",
+        "observed": [
+          -16.3,
+          13.76
+        ],
+        "expected": [
+          -3.6,
+          3.4
+        ],
+        "tolerance": 0.35,
+        "note": "a power law fitted to the printed per-run contact-event F1 admits residuals an order of magnitude larger than the printed ones, so the printed residual column cannot be rebuilt from the printed endpoint column"
+      },
+      {
+        "id": "MS-SC2-SYSTEMATIC",
+        "family": "manuscript_arithmetic",
+        "description": "the printed residual column carries no systematically signed block",
+        "source": "Supplementary Table SC2 caption",
+        "code_ref": "analysis/powerlaw.py:systematic_at_size",
+        "status": "FAIL",
+        "observed": [
+          19200
+        ],
+        "expected": [],
+        "tolerance": 0.0,
+        "note": "the printed residual column is systematically negative at 19,200 procedures (-2.8, -3.6, -2.9), which by the caption's own rule marks a departure of the fit rather than initialisation noise"
+      }
+    ],
+    "results": [
+      {
+        "id": "MS-COHORT-01",
+        "family": "manuscript_arithmetic",
+        "description": "per-site accrued counts sum to the full private cohort",
+        "source": "Sec. 4.2, Table 6 panel (a)",
+        "code_ref": "cohort/partition.py:site_strata",
+        "status": "PASS",
+        "observed": 5842,
+        "expected": 5842,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-02",
+        "family": "manuscript_arithmetic",
+        "description": "per-site held-out counts sum to the held-out partition",
+        "source": "Sec. 4.2",
+        "code_ref": "cohort/partition.py:default_partition",
+        "status": "PASS",
+        "observed": 1204,
+        "expected": 1204,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-03",
+        "family": "manuscript_arithmetic",
+        "description": "Region I pool equals the two Region I sites",
+        "source": "Table 6 panel (a)",
+        "code_ref": "cohort/partition.py:region_pool",
+        "status": "PASS",
+        "observed": 4200,
+        "expected": 4200,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-04",
+        "family": "manuscript_arithmetic",
+        "description": "the two clinical arms sum to the retrospective-plus-prospective total",
+        "source": "Table 6 panel (a)",
+        "code_ref": "cohort/partition.py:CLINICAL_ARMS",
+        "status": "PASS",
+        "observed": 5842,
+        "expected": 5842,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-05",
+        "family": "manuscript_arithmetic",
+        "description": "anatomy tertiles sum to the held-out partition",
+        "source": "Table 6 panel (b)",
+        "code_ref": "cohort/partition.py:anatomy_tertile_assignment",
+        "status": "PASS",
+        "observed": 1204,
+        "expected": 1204,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-06",
+        "family": "manuscript_arithmetic",
+        "description": "held-out Region I slice equals the two Region I held-out sites",
+        "source": "Table 6 caption",
+        "code_ref": "cohort/partition.py:SITE_HELD_OUT",
+        "status": "PASS",
+        "observed": 866,
+        "expected": 866,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-COHORT-07",
+        "family": "manuscript_arithmetic",
+        "description": "force-channel coverage is ordered Site A > Site B > Site C",
+        "source": "Table 6 panel (a)",
+        "code_ref": "cohort/partition.py:FORCE_COVERAGE_BY_SITE",
+        "status": "PASS",
+        "observed": [
+          0.71,
+          0.64,
+          0.49
+        ],
+        "expected": "descending",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-FID-unconstrained decoupled ",
+        "family": "manuscript_arithmetic",
+        "description": "signed FID delta against the unconstrained reference",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 0.7,
+        "expected": 0.7,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-REL-unconstrained decoupled ",
+        "family": "manuscript_arithmetic",
+        "description": "relative FID change matches the printed percentage",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 1.56,
+        "expected": 1.6,
+        "tolerance": 0.06,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-FID-two independent private ",
+        "family": "manuscript_arithmetic",
+        "description": "signed FID delta against the unconstrained reference",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 2.2,
+        "expected": 2.2,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-REL-two independent private ",
+        "family": "manuscript_arithmetic",
+        "description": "relative FID change matches the printed percentage",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 4.9,
+        "expected": 4.9,
+        "tolerance": 0.06,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-FID-joint private, isotropic",
+        "family": "manuscript_arithmetic",
+        "description": "signed FID delta against the unconstrained reference",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 1.5,
+        "expected": 1.5,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-REL-joint private, isotropic",
+        "family": "manuscript_arithmetic",
+        "description": "relative FID change matches the printed percentage",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 3.34,
+        "expected": 3.3,
+        "tolerance": 0.06,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-FID-CAPS",
+        "family": "manuscript_arithmetic",
+        "description": "signed FID delta against the unconstrained reference",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 0.4,
+        "expected": 0.4,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-REL-CAPS",
+        "family": "manuscript_arithmetic",
+        "description": "relative FID change matches the printed percentage",
+        "source": "Table 1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 0.89,
+        "expected": 0.9,
+        "tolerance": 0.06,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-DTW-CAPS",
+        "family": "manuscript_arithmetic",
+        "description": "CAPS trajectory-agreement cost against the unconstrained generator",
+        "source": "Sec. 2.4",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 0.003,
+        "expected": 0.003,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-DTW-DECOUPLED",
+        "family": "manuscript_arithmetic",
+        "description": "decoupling costs more trajectory agreement than the privacy constraint",
+        "source": "Sec. 2.4",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": 0.018,
+        "expected": 0.018,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-T1-DICE-ORDER",
+        "family": "manuscript_arithmetic",
+        "description": "CAPS leads the two other private rows on Dice",
+        "source": "Sec. 2.1",
+        "code_ref": "verification/manuscript_tables.py:MAIN_TABLE",
+        "status": "PASS",
+        "observed": [
+          0.8964,
+          0.8891,
+          0.8712,
+          0.8786,
+          0.8941
+        ],
+        "expected": "CAPS highest among private rows",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-RATIO-MARGINAL",
+        "family": "manuscript_arithmetic",
+        "description": "budget ratio against the two independent generators",
+        "source": "Supplementary Table SE1",
+        "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+        "status": "PASS",
+        "observed": 2.4,
+        "expected": 2.4,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-RATIO-ISOTROPIC",
+        "family": "manuscript_arithmetic",
+        "description": "budget ratio against the isotropic joint generator",
+        "source": "Supplementary Table SE1",
+        "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+        "status": "PASS",
+        "observed": 1.8,
+        "expected": 1.8,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-MIA-DELTA",
+        "family": "manuscript_arithmetic",
+        "description": "membership-inference gap between the non-private and private generators",
+        "source": "Supplementary Table SE1",
+        "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+        "status": "PASS",
+        "observed": 0.114,
+        "expected": 0.114,
+        "tolerance": 0.001,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-ORDERING",
+        "family": "manuscript_arithmetic",
+        "description": "reported budgets are ordered two-marginal > isotropic > CAPS",
+        "source": "Sec. 2.2",
+        "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+        "status": "PASS",
+        "observed": [
+          4.8,
+          3.6,
+          2.0
+        ],
+        "expected": "2.0 < 3.6 < 4.8",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-CLIPPING-SPLIT",
+        "family": "manuscript_arithmetic",
+        "description": "marginal rows carry C = 1.00 and joint rows C = 0.85",
+        "source": "Table 2 caption",
+        "code_ref": "accounting/clipping.py:compare_clipping_norms",
+        "status": "PASS",
+        "observed": [
+          1.0,
+          0.85
+        ],
+        "expected": [
+          1.0,
+          0.85
+        ],
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-UNIT-ASYMMETRY",
+        "family": "manuscript_arithmetic",
+        "description": "the private-record subspace row is flagged with an uncounted selection",
+        "source": "Table 2 row 3",
+        "code_ref": "verification/manuscript_tables.py:FRONTIER_TABLE",
+        "status": "PASS",
+        "observed": true,
+        "expected": true,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-MIA-COVER",
+        "family": "manuscript_arithmetic",
+        "description": "the private audit interval covers the no-advantage reference",
+        "source": "Sec. 2.2",
+        "code_ref": "analysis/delong.py:NO_ADVANTAGE_REFERENCE",
+        "status": "PASS",
+        "observed": [
+          0.487,
+          0.519
+        ],
+        "expected": "0.500 inside interval",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T2-MIA-NONPRIVATE",
+        "family": "manuscript_arithmetic",
+        "description": "the non-private interval excludes the no-advantage reference",
+        "source": "Sec. 2.2",
+        "code_ref": "audit/membership.py:REPORTED_NON_PRIVATE_AUDIT",
+        "status": "PASS",
+        "observed": [
+          0.598,
+          0.636
+        ],
+        "expected": "0.500 outside interval",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-COND-fid",
+        "family": "manuscript_arithmetic",
+        "description": "conditioning main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:conditioning_main_effect",
+        "status": "PASS",
+        "observed": 9.65,
+        "expected": 9.65,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-RES-fid",
+        "family": "manuscript_arithmetic",
+        "description": "resolution main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:resolution_main_effect",
+        "status": "PASS",
+        "observed": 3.15,
+        "expected": 3.15,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-INT-fid",
+        "family": "manuscript_arithmetic",
+        "description": "interaction recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:interaction",
+        "status": "PASS",
+        "observed": 5.1,
+        "expected": 5.1,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-DOM-fid",
+        "family": "manuscript_arithmetic",
+        "description": "dominance ratio of the conditioning effect over the resolution effect",
+        "source": "Table 3 caption",
+        "code_ref": "analysis/factorial.py:FactorialContrast.dominance_ratio",
+        "status": "PASS",
+        "observed": 3.063,
+        "expected": 3.06,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-COND-dtw",
+        "family": "manuscript_arithmetic",
+        "description": "conditioning main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:conditioning_main_effect",
+        "status": "PASS",
+        "observed": 0.1,
+        "expected": 0.1,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-RES-dtw",
+        "family": "manuscript_arithmetic",
+        "description": "resolution main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:resolution_main_effect",
+        "status": "PASS",
+        "observed": 0.023,
+        "expected": 0.023,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-INT-dtw",
+        "family": "manuscript_arithmetic",
+        "description": "interaction recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:interaction",
+        "status": "PASS",
+        "observed": 0.03,
+        "expected": 0.03,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-DOM-dtw",
+        "family": "manuscript_arithmetic",
+        "description": "dominance ratio of the conditioning effect over the resolution effect",
+        "source": "Table 3 caption",
+        "code_ref": "analysis/factorial.py:FactorialContrast.dominance_ratio",
+        "status": "PASS",
+        "observed": 4.348,
+        "expected": 4.35,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-COND-contact_event_f1",
+        "family": "manuscript_arithmetic",
+        "description": "conditioning main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:conditioning_main_effect",
+        "status": "PASS",
+        "observed": 0.0845,
+        "expected": 0.085,
+        "tolerance": 0.0006,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-RES-contact_event_f1",
+        "family": "manuscript_arithmetic",
+        "description": "resolution main effect recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:resolution_main_effect",
+        "status": "PASS",
+        "observed": 0.0135,
+        "expected": 0.014,
+        "tolerance": 0.0006,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-INT-contact_event_f1",
+        "family": "manuscript_arithmetic",
+        "description": "interaction recomputed from the four printed cells",
+        "source": "Table 3 panel (b)",
+        "code_ref": "analysis/factorial.py:interaction",
+        "status": "PASS",
+        "observed": 0.009,
+        "expected": 0.009,
+        "tolerance": 0.0006,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-DOM-contact_event_f1",
+        "family": "manuscript_arithmetic",
+        "description": "dominance ratio of the conditioning effect over the resolution effect",
+        "source": "Table 3 caption",
+        "code_ref": "analysis/factorial.py:FactorialContrast.dominance_ratio",
+        "status": "PASS",
+        "observed": 6.259,
+        "expected": 6.26,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-RHO-RESOLUTION",
+        "family": "manuscript_arithmetic",
+        "description": "rho moves with conditioning and not with resolution",
+        "source": "Table 3 caption",
+        "code_ref": "analysis/factorial.py:rho_invariance_across_resolution",
+        "status": "PASS",
+        "observed": 0.515,
+        "expected": 0.515,
+        "tolerance": 0.02,
+        "note": ""
+      },
+      {
+        "id": "MS-T3-BUDGET-ORDER",
+        "family": "manuscript_arithmetic",
+        "description": "the off-conditioning cells pay the larger parity budget",
+        "source": "Table 3 panel (a)",
+        "code_ref": "analysis/factorial.py:budget_moves_with_conditioning",
+        "status": "PASS",
+        "observed": [
+          5.6,
+          6.2
+        ],
+        "expected": "both above the on-conditioning budgets",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-FULL-CONSISTENT",
+        "family": "manuscript_arithmetic",
+        "description": "the full-mechanism row carries the main-table values",
+        "source": "Table 4 row 1",
+        "code_ref": "verification/manuscript_tables.py:ABLATION_TABLE",
+        "status": "PASS",
+        "observed": [
+          0.148,
+          0.8941,
+          45.3,
+          2.0
+        ],
+        "expected": [
+          0.148,
+          0.8941,
+          45.3,
+          2.0
+        ],
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-LATENT-LARGEST",
+        "family": "manuscript_arithmetic",
+        "description": "removing the shared latent drops contact-event F1 more than removing the head alone",
+        "source": "Sec. 2.5",
+        "code_ref": "analysis/interaction.py:component_drop",
+        "status": "PASS",
+        "observed": [
+          0.071,
+          0.039
+        ],
+        "expected": [
+          0.071,
+          0.039
+        ],
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-ESTIMATOR-NULL",
+        "family": "manuscript_arithmetic",
+        "description": "the estimator removal is retained as a null result inside the fence",
+        "source": "Table 4 caption",
+        "code_ref": "analysis/null_fence.py:fence_verdict",
+        "status": "PASS",
+        "observed": 0.00238,
+        "expected": 0.0024,
+        "tolerance": 0.0002,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-ACCOUNTANT-NEUTRAL",
+        "family": "manuscript_arithmetic",
+        "description": "removing the procedure accountant leaves the main utility unchanged",
+        "source": "Sec. 2.5",
+        "code_ref": "verification/manuscript_tables.py:ABLATION_TABLE",
+        "status": "PASS",
+        "observed": [
+          0.8941,
+          45.3,
+          2.0
+        ],
+        "expected": [
+          0.8941,
+          45.3,
+          2.0
+        ],
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-NONMONOTONE-DICE",
+        "family": "manuscript_arithmetic",
+        "description": "removing the shaped noise is the single retained non-monotonic gain",
+        "source": "Table 4 row 12, Table SB1",
+        "code_ref": "verification/manuscript_tables.py:STRATUM_TABLE",
+        "status": "PASS",
+        "observed": [
+          0.8786,
+          0.8941
+        ],
+        "expected": "shaped removal above the full mechanism",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SB1-COMPLEX-DICE",
+        "family": "manuscript_arithmetic",
+        "description": "the complex-stratum Dice of the shaped-noise removal is the printed 0.8986",
+        "source": "Supplementary Table SB1",
+        "code_ref": "verification/manuscript_tables.py:STRATUM_TABLE",
+        "status": "PASS",
+        "observed": 0.8986,
+        "expected": 0.8986,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SB1-WEIGHTED-MEAN",
+        "family": "manuscript_arithmetic",
+        "description": "the pooled column of the full mechanism is the procedure-weighted stratum mean",
+        "source": "Supplementary Table SB1 caption",
+        "code_ref": "metrics/segmentation.py:dice_by_stratum",
+        "status": "PASS",
+        "observed": 0.842,
+        "expected": 0.842,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-IR-coupling-shaped",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise interaction ratio recomputed from the printed drops",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.interaction_ratio",
+        "status": "PASS",
+        "observed": 1.218,
+        "expected": 1.22,
+        "tolerance": 0.01,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-REL-coupling-shaped",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise relation label matches the printed one",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.relation",
+        "status": "PASS",
+        "observed": "super-additive",
+        "expected": "super-additive",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-IR-shaped-factorization",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise interaction ratio recomputed from the printed drops",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.interaction_ratio",
+        "status": "PASS",
+        "observed": 1.509,
+        "expected": 1.51,
+        "tolerance": 0.01,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-REL-shaped-factorization",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise relation label matches the printed one",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.relation",
+        "status": "PASS",
+        "observed": "super-additive",
+        "expected": "super-additive",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-IR-coupling-factorization",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise interaction ratio recomputed from the printed drops",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.interaction_ratio",
+        "status": "PASS",
+        "observed": 1.149,
+        "expected": 1.15,
+        "tolerance": 0.01,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-REL-coupling-factorization",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise relation label matches the printed one",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.relation",
+        "status": "PASS",
+        "observed": "super-additive",
+        "expected": "super-additive",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-IR-public-reference-shaped",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise interaction ratio recomputed from the printed drops",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.interaction_ratio",
+        "status": "PASS",
+        "observed": 1.0,
+        "expected": 1.01,
+        "tolerance": 0.01,
+        "note": ""
+      },
+      {
+        "id": "MS-T4-REL-public-reference-shaped",
+        "family": "manuscript_arithmetic",
+        "description": "pairwise relation label matches the printed one",
+        "source": "Table 4 panel (b)",
+        "code_ref": "analysis/interaction.py:PairwiseInteraction.relation",
+        "status": "PASS",
+        "observed": "prerequisite, not synergy",
+        "expected": "prerequisite, not synergy",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-PARITY-PP",
+        "family": "manuscript_arithmetic",
+        "description": "private-substrate success sits inside the non-inferiority margin against the unconstrained substrate",
+        "source": "Table 5 caption",
+        "code_ref": "metrics/safety.py:non_inferiority_margin",
+        "status": "PASS",
+        "observed": 0.7,
+        "expected": 0.7,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-STANDARD-GAP",
+        "family": "manuscript_arithmetic",
+        "description": "private-substrate success trails the standard of care by the printed margin",
+        "source": "Supplementary Table SE1",
+        "code_ref": "metrics/safety.py:non_inferiority_margin",
+        "status": "PASS",
+        "observed": 4.6,
+        "expected": 4.6,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-CONTACT-MCID",
+        "family": "manuscript_arithmetic",
+        "description": "the contact-event reduction clears its minimum clinically important difference twice",
+        "source": "Table 5 caption",
+        "code_ref": "metrics/safety.py:clears_mcid",
+        "status": "PASS",
+        "observed": 1.0,
+        "expected": 1.0,
+        "tolerance": 0.005,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-FORCE-MARGIN",
+        "family": "manuscript_arithmetic",
+        "description": "the peak contact force sits about 46% under the reference perforation magnitude",
+        "source": "Sec. 2.6",
+        "code_ref": "metrics/safety.py:force_envelope_margin",
+        "status": "PASS",
+        "observed": 46.05,
+        "expected": 46.0,
+        "tolerance": 0.5,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-CBF-BAND",
+        "family": "manuscript_arithmetic",
+        "description": "the control-barrier-function filter breaches the parity band",
+        "source": "Table 5 panel (a)",
+        "code_ref": "metrics/safety.py:within_non_inferiority_margin",
+        "status": "PASS",
+        "observed": 2.8,
+        "expected": 2.8,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-POTENTIAL-FIELD",
+        "family": "manuscript_arithmetic",
+        "description": "the reactive potential-field avoider loses the printed margin of success",
+        "source": "Table 5 panel (a)",
+        "code_ref": "metrics/safety.py:non_inferiority_margin",
+        "status": "PASS",
+        "observed": 19.0,
+        "expected": 19.0,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-EQUAL-BUDGET",
+        "family": "manuscript_arithmetic",
+        "description": "the equal-budget configuration is a parity row against the unconstrained substrate",
+        "source": "Table 5 panel (a)",
+        "code_ref": "verification/manuscript_tables.py:SAFETY_TABLE",
+        "status": "PASS",
+        "observed": 1.1,
+        "expected": 1.1,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T5-COVERAGE-COLUMN",
+        "family": "manuscript_arithmetic",
+        "description": "the normalised contact column is not a rescaling of the per-procedure column",
+        "source": "Table 5 caption",
+        "code_ref": "metrics/safety.py:SafetyRow.contacts_per_thousand_frames",
+        "status": "PASS",
+        "observed": [
+          0.5455,
+          0.5,
+          0.6,
+          0.4848,
+          0.4667,
+          0.4688
+        ],
+        "expected": "frames per 1000 is constant",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T6-SPREAD",
+        "family": "manuscript_arithmetic",
+        "description": "the per-site success spread matches the printed 3.4 percentage points",
+        "source": "Sec. 2.7",
+        "code_ref": "metrics/safety.py:per_site_spread",
+        "status": "PASS",
+        "observed": 3.4,
+        "expected": 3.4,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T6-CROSS-REGION",
+        "family": "manuscript_arithmetic",
+        "description": "the cross-region drop satisfies the pre-specified 5.0 percentage-point bound",
+        "source": "Sec. 2.7",
+        "code_ref": "metrics/safety.py:cross_region_bound_holds",
+        "status": "PASS",
+        "observed": 2.6,
+        "expected": 2.6,
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T6-WILSON-anatomy_simple",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.909,
+          0.957
+        ],
+        "expected": [
+          0.912,
+          0.958
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0029 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-anatomy_intermediate",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.871,
+          0.926
+        ],
+        "expected": [
+          0.874,
+          0.928
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0029 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-anatomy_complex",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.792,
+          0.871
+        ],
+        "expected": [
+          0.796,
+          0.876
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0048 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-access_transradial",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.875,
+          0.919
+        ],
+        "expected": [
+          0.877,
+          0.921
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0024 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-access_transfemoral",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.856,
+          0.913
+        ],
+        "expected": [
+          0.861,
+          0.917
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0047 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-operator_experienced",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.886,
+          0.93
+        ],
+        "expected": [
+          0.889,
+          0.933
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0030 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-WILSON-operator_early_career",
+        "family": "manuscript_arithmetic",
+        "description": "Wilson interval recomputed from the printed denominator and proportion",
+        "source": "Table 6 panel (b)",
+        "code_ref": "metrics/clinical.py:wilson_interval",
+        "status": "PASS",
+        "observed": [
+          0.846,
+          0.901
+        ],
+        "expected": [
+          0.849,
+          0.903
+        ],
+        "tolerance": 0.005,
+        "note": "the printed intervals sit up to 0.0031 away from a Wilson score interval rebuilt from the printed denominator and rounded point"
+      },
+      {
+        "id": "MS-T6-SUBGROUP-ORDER",
+        "family": "manuscript_arithmetic",
+        "description": "task success falls monotonically with anatomy complexity",
+        "source": "Table 6 panel (b)",
+        "code_ref": "verification/manuscript_tables.py:SUBGROUP_TABLE",
+        "status": "PASS",
+        "observed": [
+          0.938,
+          0.901,
+          0.836
+        ],
+        "expected": "descending",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T6-POINT-INSIDE",
+        "family": "manuscript_arithmetic",
+        "description": "every printed subgroup proportion sits inside its printed interval",
+        "source": "Table 6 panel (b)",
+        "code_ref": "verification/manuscript_tables.py:SUBGROUP_TABLE",
+        "status": "PASS",
+        "observed": true,
+        "expected": true,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-T7A-MONOTONE",
+        "family": "manuscript_arithmetic",
+        "description": "contact-event F1 improves monotonically with substrate volume",
+        "source": "Supplementary Table T7 panel A",
+        "code_ref": "analysis/powerlaw.py:scaling_is_monotone",
+        "status": "PASS",
+        "observed": [
+          0.774,
+          0.801,
+          0.822,
+          0.836,
+          0.841,
+          0.843
+        ],
+        "expected": "non-decreasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-T7B-BUDGET-FLOOR",
+        "family": "manuscript_arithmetic",
+        "description": "the parity budget stops improving at the largest substrate volumes",
+        "source": "Supplementary Table T7 panel B",
+        "code_ref": "analysis/powerlaw.py:budget_floor_reached",
+        "status": "PASS",
+        "observed": [
+          9600,
+          19200
+        ],
+        "expected": [
+          9600,
+          19200
+        ],
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SC2-FIT",
+        "family": "manuscript_arithmetic",
+        "description": "the raw scaling data admit a power law with the printed residual order",
+        "source": "Supplementary Table SC2",
+        "code_ref": "analysis/powerlaw.py:residuals_in_units",
+        "status": "FAIL",
+        "observed": [
+          -16.3,
+          13.76
+        ],
+        "expected": [
+          -3.6,
+          3.4
+        ],
+        "tolerance": 0.35,
+        "note": "a power law fitted to the printed per-run contact-event F1 admits residuals an order of magnitude larger than the printed ones, so the printed residual column cannot be rebuilt from the printed endpoint column"
+      },
+      {
+        "id": "MS-SC2-SYSTEMATIC",
+        "family": "manuscript_arithmetic",
+        "description": "the printed residual column carries no systematically signed block",
+        "source": "Supplementary Table SC2 caption",
+        "code_ref": "analysis/powerlaw.py:systematic_at_size",
+        "status": "FAIL",
+        "observed": [
+          19200
+        ],
+        "expected": [],
+        "tolerance": 0.0,
+        "note": "the printed residual column is systematically negative at 19,200 procedures (-2.8, -3.6, -2.9), which by the caption's own rule marks a departure of the fit rather than initialisation noise"
+      },
+      {
+        "id": "MS-T7C-SATURATION",
+        "family": "manuscript_arithmetic",
+        "description": "the reference-corpus ladder saturates at its last two rungs",
+        "source": "Supplementary Table T7 panel C",
+        "code_ref": "analysis/powerlaw.py:reference_corpus_saturation",
+        "status": "PASS",
+        "observed": [
+          0.836,
+          0.837
+        ],
+        "expected": [
+          0.836,
+          0.837
+        ],
+        "tolerance": 0.002,
+        "note": ""
+      },
+      {
+        "id": "MS-T7D-COST-POLYLOG",
+        "family": "manuscript_arithmetic",
+        "description": "the window composition-cost ladder is polylogarithmic in the window length",
+        "source": "Supplementary Table T7 panel D",
+        "code_ref": "coupling/prefix_sum.py:fit_log_ladder",
+        "status": "PASS",
+        "observed": 0.9802,
+        "expected": ">= 0.95",
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-T7D-LATENCY-POLYLOG",
+        "family": "manuscript_arithmetic",
+        "description": "the window relative-latency ladder is polylogarithmic in the window length",
+        "source": "Supplementary Table T7 panel D",
+        "code_ref": "coupling/prefix_sum.py:fit_log_ladder",
+        "status": "PASS",
+        "observed": 0.9992,
+        "expected": ">= 0.95",
+        "tolerance": 0.05,
+        "note": ""
+      },
+      {
+        "id": "MS-SC1-intensity",
+        "family": "manuscript_arithmetic",
+        "description": "the perturbation family degrades the contact-event F1 monotonically",
+        "source": "Supplementary Table SC1",
+        "code_ref": "verification/manuscript_tables.py:PERTURBATION_TABLE",
+        "status": "PASS",
+        "observed": [
+          -0.002,
+          -0.006,
+          -0.012,
+          -0.023,
+          -0.044
+        ],
+        "expected": "non-increasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SC1-dropout",
+        "family": "manuscript_arithmetic",
+        "description": "the perturbation family degrades the contact-event F1 monotonically",
+        "source": "Supplementary Table SC1",
+        "code_ref": "verification/manuscript_tables.py:PERTURBATION_TABLE",
+        "status": "PASS",
+        "observed": [
+          -0.004,
+          -0.009,
+          -0.018,
+          -0.036,
+          -0.061
+        ],
+        "expected": "non-increasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SC1-drift",
+        "family": "manuscript_arithmetic",
+        "description": "the perturbation family degrades the contact-event F1 monotonically",
+        "source": "Supplementary Table SC1",
+        "code_ref": "verification/manuscript_tables.py:PERTURBATION_TABLE",
+        "status": "PASS",
+        "observed": [
+          -0.003,
+          -0.007,
+          -0.014,
+          -0.027,
+          -0.049
+        ],
+        "expected": "non-increasing",
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-INVENTORY",
+        "family": "manuscript_arithmetic",
+        "description": "the exploratory inventory sums to the declared twenty-three comparisons",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/multiplicity.py:inventory_total",
+        "status": "PASS",
+        "observed": 23,
+        "expected": 23,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-FAMILIES",
+        "family": "manuscript_arithmetic",
+        "description": "the inventory is spread over the declared number of families",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/multiplicity.py:declare_families",
+        "status": "PASS",
+        "observed": 7,
+        "expected": 7,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-PRIMARIES",
+        "family": "manuscript_arithmetic",
+        "description": "three comparisons are pre-specified and carry the Holm correction",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/multiplicity.py:holm_bonferroni",
+        "status": "PASS",
+        "observed": 3,
+        "expected": 3,
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-HOLM-PASS",
+        "family": "manuscript_arithmetic",
+        "description": "all pre-specified primaries survive the Holm step-down at the declared level",
+        "source": "Sec. 2.8",
+        "code_ref": "analysis/multiplicity.py:holm_bonferroni",
+        "status": "PASS",
+        "observed": [
+          true,
+          true,
+          true
+        ],
+        "expected": [
+          true,
+          true,
+          true
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-BH-RETAINED",
+        "family": "manuscript_arithmetic",
+        "description": "a retained null result survives the Benjamini-Hochberg step-up",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/multiplicity.py:benjamini_hochberg",
+        "status": "PASS",
+        "observed": [
+          false
+        ],
+        "expected": [
+          false
+        ],
+        "tolerance": null,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-policy-on-private-substrate",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column reproduces its printed mean",
+        "source": "Supplementary Table SC3",
+        "code_ref": "verification/manuscript_tables.py:INITIALISATION_SUCCESS",
+        "status": "PASS",
+        "observed": 0.895,
+        "expected": 0.895,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-SPREAD-policy-on-private-substrate",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column carries more than one distinct value",
+        "source": "Supplementary Table SC3",
+        "code_ref": "analysis/variance.py:dispersion",
+        "status": "PASS",
+        "observed": 0.01072,
+        "expected": "> 0",
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-policy-on-unconstrained-substrate",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column reproduces its printed mean",
+        "source": "Supplementary Table SC3",
+        "code_ref": "verification/manuscript_tables.py:INITIALISATION_SUCCESS",
+        "status": "PASS",
+        "observed": 0.902,
+        "expected": 0.902,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-SPREAD-policy-on-unconstrained-substrate",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column carries more than one distinct value",
+        "source": "Supplementary Table SC3",
+        "code_ref": "analysis/variance.py:dispersion",
+        "status": "PASS",
+        "observed": 0.01089,
+        "expected": "> 0",
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-control-barrier-function-filter",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column reproduces its printed mean",
+        "source": "Supplementary Table SC3",
+        "code_ref": "verification/manuscript_tables.py:INITIALISATION_SUCCESS",
+        "status": "PASS",
+        "observed": 0.874,
+        "expected": 0.874,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-SPREAD-control-barrier-function-filter",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column carries more than one distinct value",
+        "source": "Supplementary Table SC3",
+        "code_ref": "analysis/variance.py:dispersion",
+        "status": "PASS",
+        "observed": 0.01207,
+        "expected": "> 0",
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-reactive-potential-field-avoider",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column reproduces its printed mean",
+        "source": "Supplementary Table SC3",
+        "code_ref": "verification/manuscript_tables.py:INITIALISATION_SUCCESS",
+        "status": "PASS",
+        "observed": 0.712,
+        "expected": 0.712,
+        "tolerance": 0.0005,
+        "note": ""
+      },
+      {
+        "id": "MS-SC3-SPREAD-reactive-potential-field-avoider",
+        "family": "manuscript_arithmetic",
+        "description": "the twenty-initialisation column carries more than one distinct value",
+        "source": "Supplementary Table SC3",
+        "code_ref": "analysis/variance.py:dispersion",
+        "status": "PASS",
+        "observed": 0.01204,
+        "expected": "> 0",
+        "tolerance": 0.0,
+        "note": ""
+      },
+      {
+        "id": "MS-SE1-DELONG-UNIT",
+        "family": "manuscript_arithmetic",
+        "description": "the area comparison is stated as a paired DeLong test on the held-out procedures",
+        "source": "Supplementary Table SE1",
+        "code_ref": "analysis/delong.py:delong_paired_test",
+        "status": "PASS",
+        "observed": [
+          "DeLong paired (1204 procedures)"
+        ],
+        "expected": [
+          "DeLong paired (1204 procedures)"
+        ],
+        "tolerance": null,
+        "note": ""
+      }
+    ]
+  },
+  "discrepancies": [
+    {
+      "id": "MS-SC2-FIT",
+      "family": "manuscript_arithmetic",
+      "description": "the raw scaling data admit a power law with the printed residual order",
+      "source": "Supplementary Table SC2",
+      "code_ref": "analysis/powerlaw.py:residuals_in_units",
+      "status": "FAIL",
+      "observed": [
+        -16.3,
+        13.76
+      ],
+      "expected": [
+        -3.6,
+        3.4
+      ],
+      "tolerance": 0.35,
+      "note": "a power law fitted to the printed per-run contact-event F1 admits residuals an order of magnitude larger than the printed ones, so the printed residual column cannot be rebuilt from the printed endpoint column"
+    },
+    {
+      "id": "MS-SC2-SYSTEMATIC",
+      "family": "manuscript_arithmetic",
+      "description": "the printed residual column carries no systematically signed block",
+      "source": "Supplementary Table SC2 caption",
+      "code_ref": "analysis/powerlaw.py:systematic_at_size",
+      "status": "FAIL",
+      "observed": [
+        19200
+      ],
+      "expected": [],
+      "tolerance": 0.0,
+      "note": "the printed residual column is systematically negative at 19,200 procedures (-2.8, -3.6, -2.9), which by the caption's own rule marks a departure of the fit rather than initialisation noise"
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "EX-BLK-01",
+      "family": "code_execution",
+      "description": "cohort-level fidelity and motion endpoints on the 1,204 held-out procedures",
+      "source": "Table 1",
+      "code_ref": "cohort/reference.py:ReferenceCorpus",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "the private multi-centre cohort is not exportable, so no held-out procedure is available here"
+    },
+    {
+      "id": "EX-BLK-02",
+      "family": "code_execution",
+      "description": "the 8.3B latent video diffusion transformer and its privatised attention modules",
+      "source": "Sec. 4.4, Sec. 4.5",
+      "code_ref": "branches/attention.py:PrivatisedTransformerStack",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "the reported backbone weights are not staged in this environment; the mechanism runs on the declared attention dimension of the schema-compatible configuration"
+    },
+    {
+      "id": "EX-BLK-03",
+      "family": "code_execution",
+      "description": "expert vessel annotations and the reader study",
+      "source": "Sec. 4.10",
+      "code_ref": "metrics/segmentation.py:dice_overlap",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "expert annotations and the nine readers belong to the private cohort"
+    },
+    {
+      "id": "EX-BLK-04",
+      "family": "code_execution",
+      "description": "cross-region and cross-vendor external validation",
+      "source": "Sec. 4.2, Table 6",
+      "code_ref": "cohort/partition.py:SITE_HELD_OUT",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "Site C procedures and the second equipment family are inside the private cohort"
+    },
+    {
+      "id": "EX-BLK-05",
+      "family": "code_execution",
+      "description": "the bench-top phantom force envelope and in-vivo perforation anchor",
+      "source": "Sec. 4.1, Sec. 2.6",
+      "code_ref": "metrics/safety.py:force_envelope_margin",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "the bench-top arm was measured on laboratory hardware that is not part of this release"
+    },
+    {
+      "id": "EX-BLK-06",
+      "family": "code_execution",
+      "description": "clinical endpoints under the retrospective supporting arm",
+      "source": "Table 5, Table 6 panel (a)",
+      "code_ref": "policy/rollout.py:aggregate_strategy",
+      "status": "BLOCKED",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "the matched trajectory control needs the accrued clinical trajectories"
+    },
+    {
+      "id": "EX-NR-01",
+      "family": "code_execution",
+      "description": "parity budget of the shaped arm at the reported precision",
+      "source": "Sec. 2.2",
+      "code_ref": "runner/trainer.py:CAPSTrainer.run",
+      "status": "NOT_RUN",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "the procedure-level sampling rate is not stated in the manuscript, so the accounting convention it implies cannot be rebuilt; the accountant identity itself is checked separately"
+    },
+    {
+      "id": "EX-NR-02",
+      "family": "code_execution",
+      "description": "the reported 12.7 / 0.67 / 5.45 percent coefficient of variation of the private mechanism",
+      "source": "Sec. 2.8",
+      "code_ref": "runner/seeding.py:SeedState.training_seeds",
+      "status": "NOT_RUN",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "three independent training occasions over the private cohort are required"
+    },
+    {
+      "id": "EX-NR-03",
+      "family": "code_execution",
+      "description": "the power-law residual column of the raw scaling table",
+      "source": "Supplementary Table SC2",
+      "code_ref": "analysis/powerlaw.py:fit_power_law",
+      "status": "NOT_RUN",
+      "observed": null,
+      "expected": null,
+      "tolerance": null,
+      "note": "rebuilt from the printed endpoints the residual scale differs by an order of magnitude, recorded as a manuscript-layer discrepancy"
+    }
+  ],
+  "measurements": {
+    "root": ".",
+    "scratch": "reports/scratch"
+  }
+}

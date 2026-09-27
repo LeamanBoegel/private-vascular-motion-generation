@@ -1,0 +1,17 @@
+study: factorial_resolution_conditioning
+base: caps_main
+description: >
+  Resolution x conditioning factorial at a fixed declared budget of two epsilon. The
+  conditioning-off cell removes the shared latent and the coupling head and substitutes an
+  isotropic covariance; the doubled-resolution cell doubles the appearance token count.
+scheme: conditioning_off
+factorial:
+  declared_budget: 2.0
+  resolution_levels: [1, 2]
+  conditioning_levels: ["on", "off"]
+  reference_contact_event_f1: 0.842
+  cells:
+    on_1x: {resolution: 1, conditioning: "on"}
+    on_2x: {resolution: 2, conditioning: "on"}
+    off_1x: {resolution: 1, conditioning: "off"}
+    off_2x: {resolution: 2, conditioning: "off"}

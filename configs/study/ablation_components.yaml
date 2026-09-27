@@ -1,0 +1,25 @@
+study: ablation_components
+base: caps_main
+description: >
+  Component ablation. Tier 0 holds the random-input and trivial controls, Tier 1 removes one
+  Level-1 component at a time, Tier 3 holds the CAPS-specific ladder, and the two reference
+  rows place the unconstrained optimum and the two-marginal mechanism on the same frame.
+components:
+  removal_order:
+    - shared_coupling_latent
+    - coupling_head_only
+    - coupling_shaped_window_noise
+    - prefix_sum_factorization
+    - public_reference_estimator
+    - procedure_accountant
+  controls:
+    - kinematic_channel_permuted
+    - frame_sequence_permuted
+    - cohort_mean_trajectory_head
+    - nearest_neighbour_trajectory_head
+    - kinematic_channels_zeroed
+    - force_channel_zeroed
+    - projection_geometry_metadata_zeroed
+    - contrast_phase_label_zeroed
+  reference_rows: [two_independent_private_generators, unconstrained_joint_generator]
+  reference_contact_event_f1: 0.842

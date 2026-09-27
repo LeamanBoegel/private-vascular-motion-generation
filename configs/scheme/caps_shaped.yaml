@@ -1,0 +1,7 @@
+# Coupling-shaped window noise: full strength on the coupling subspace, attenuated on the residual.
+label: caps_shaped
+noise_geometry: coupling_anisotropic
+sigma_parallel: 5.4
+sigma_perpendicular: 2.6
+rank: 12
+clipping_norm: 0.85

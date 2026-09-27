@@ -1,0 +1,9 @@
+study: release_path
+base: caps_main
+description: >
+  Release path of the mechanism: the shaping subspace is frozen from the reference layer, the
+  privatised block is trained, and the substrate is decoded from freshly sampled procedure codes.
+release:
+  procedures: 6
+  post_processing_only: true
+  charge_additional_cost: false

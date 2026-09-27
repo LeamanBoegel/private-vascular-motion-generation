@@ -1,0 +1,12 @@
+# Reported optimisation plan: 12,000 rounds at a learning rate of 3.2e-3.
+label: caps_12000x0.0032
+optimiser:
+  rounds: 12000
+  learning_rate: 0.0032
+  warmup_fraction: 0.05
+  minimum_learning_ratio: 0.02
+  weight_decay: 0.0
+  beta1: 0.9
+  beta2: 0.999
+  epsilon: 1.0e-8
+  gradient_clip: null

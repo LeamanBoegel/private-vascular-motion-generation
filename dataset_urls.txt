@@ -1,0 +1,24 @@
+# Upstream sources this release points at.
+#
+# Every URL below was fetched on 2026-09-27 and its served content was checked against the
+# role claimed for it here and in the manuscript. A source that could not be reached, or
+# whose content did not match, is not listed. Sources the manuscript leaves unnamed are
+# recorded at the bottom as unresolved rather than filled in with a plausible substitute.
+#
+# Format: <role> | <url> | <content verified at that URL> | <licence as stated upstream>
+
+backbone_weights      | https://huggingface.co/tencent/HunyuanVideo-1.5      | HunyuanVideo-1.5, the 8.3B latent video diffusion transformer with open weights cited as the generator's base | Tencent Hunyuan Community License
+backbone_source       | https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5  | upstream training and inference code for the same backbone | Tencent Hunyuan Community License
+appearance_encoder    | https://github.com/JiarunLiu/Swin-UMamba             | Swin-UMamba, the Mamba-based UNet with ImageNet pretraining that the appearance encoder follows | Apache-2.0
+attention_privacy     | https://arxiv.org/abs/2305.15759                    | DP-LDMs, the attention-module privatisation recipe the mechanism builds on | arXiv perpetual non-exclusive licence
+world_model_baseline  | https://github.com/nicklashansen/tdmpc2              | code for TD-MPC2, the latent world-model controller reproduced as a comparator | MIT
+runtime_framework     | https://pytorch.org/                                | the tensor framework the release is built on | BSD-3-Clause
+
+# Unresolved sources. The manuscript states that these exist but does not name them, so no
+# URL is asserted. They are the reason the corresponding endpoints are blocked rather than
+# measured, and no substitute is linked in their place.
+#
+# unnamed_public_angiography | the "public angiographic collections" of Sec. 4.2 and Algorithm 2
+# unnamed_open_simulator     | the "open-simulator expert trajectories" of Algorithm 2
+# private_cohort             | the 5,842-procedure multi-centre cohort of Sec. 4.2, not exportable
+# expert_annotations         | the vessel annotations behind the Dice and Hausdorff columns

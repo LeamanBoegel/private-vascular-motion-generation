@@ -1,0 +1,9 @@
+study: scaling_reference_corpus
+base: caps_main
+description: >
+  Public-reference corpus sweep. The shaping estimator is fed from increasing reference
+  volumes and the measured ratio, the endpoint and the parity budget are recorded.
+sweep:
+  axis: reference_corpus
+  rungs_thousands: [2, 4, 8, 16]
+  independent_initialisations: 3

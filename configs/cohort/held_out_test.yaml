@@ -1,0 +1,6 @@
+label: held_out_test
+partition: site_stratified
+held_out_procedures: 1204
+region_one_slice: 866
+region_two_slice: 338
+split_unit: procedure

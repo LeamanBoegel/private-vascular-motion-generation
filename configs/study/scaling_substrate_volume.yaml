@@ -1,0 +1,10 @@
+study: scaling_substrate_volume
+base: caps_main
+description: >
+  Private-data volume sweep at the locked noise geometry. Six substrate sizes report the
+  measured off-coupling ratio, the contact-event F1, the fidelity and the parity budget.
+sweep:
+  axis: substrate_volume
+  rungs: [600, 1200, 2400, 4800, 9600, 19200]
+  locked_geometry: true
+  independent_initialisations: 3

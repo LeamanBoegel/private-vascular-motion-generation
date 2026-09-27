@@ -1,0 +1,11 @@
+study: audit_membership
+base: caps_main
+description: >
+  Attack-based privacy audit. The membership-inference statistic is computed on the held-out
+  partition for the private mechanism and for the non-private reference, with the
+  frequency-calibrated variant beside the plain one and the distance proxy as a diagnostic.
+audit:
+  reference_no_advantage: 0.500
+  resamples: 2000
+  calibration_bins: 8
+  report_distance_proxy: true

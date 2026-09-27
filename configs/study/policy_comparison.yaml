@@ -1,0 +1,20 @@
+study: policy_comparison
+base: caps_main
+description: >
+  Policy, safety and clinical endpoints. The released substrate policy is compared with the
+  unconstrained-substrate policy, an equal-budget configuration, the standard of care and two
+  classical constrained controllers on the same held-out centreline.
+policy:
+  strategies:
+    - standard_of_care
+    - control_barrier_function
+    - reactive_potential_field
+    - policy_unconstrained_substrate
+    - policy_private_substrate
+    - equal_budget_configuration
+  non_inferiority_margin_pp: 3.0
+  contact_event_mcid: 0.5
+  published_comparators:
+    - strongest_world_model_controller
+    - base_world_model_controller
+    - soft_actor_critic

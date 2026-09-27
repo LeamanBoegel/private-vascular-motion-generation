@@ -1,0 +1,73 @@
+study: _smoke
+description: >
+  Reduced-width configuration used by the unit and smoke tests. It is not a reporting
+  configuration and its numbers must never be quoted as a mechanism result.
+scheme: caps_shaped
+cohort: multicentre_private
+runner: caps_12000x0.0032
+
+run:
+  seed: 7
+  height: 32
+  width: 32
+  checkpoint_every: 2
+  reference_size: 6
+  private_size: 8
+
+substrate:
+  dimension: 32
+  window_length: 3
+  sigma_parallel: 5.4
+  sigma_perpendicular: 2.6
+  rank: 3
+  clipping_norm: 0.85
+  sampling_rate: 0.5
+  rounds: 6
+  delta: 1.0e-5
+  uniform_window: true
+  truncated_window: false
+
+coupling:
+  latent_dim: 24
+  shared_latent: true
+  coupling_head: true
+
+estimator:
+  reference_batch_size: 6
+  max_minibatches: 1
+
+branch:
+  appearance:
+    in_frames: 16
+    dim: 32
+    heads: 4
+    window: 4
+    stages: 1
+    state_dim: 8
+    transformer_depth: 1
+    latent_dim: 24
+    patch: 2
+  motion:
+    frames: 16
+    width: 32
+    latent_dim: 24
+    depth: 1
+  decoder:
+    latent_dim: 32
+    appearance_extent: [32, 32]
+    frames: 16
+    hidden: 32
+
+optimiser:
+  rounds: 6
+  learning_rate: 0.05
+  warmup_fraction: 0.0
+  minimum_learning_ratio: 1.0
+  weight_decay: 0.0
+  beta1: 0.9
+  beta2: 0.999
+  epsilon: 1.0e-8
+  gradient_clip: null
+
+accounting:
+  order_grid: [2, 3, 4, 6, 8, 12, 16]

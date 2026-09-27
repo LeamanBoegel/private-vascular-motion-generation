@@ -1,0 +1,13 @@
+# Supervised single-batch fit used to confirm that the optimisation signal reaches both
+# branches. It carries no privacy account and is never reported as a mechanism result.
+label: overfit_single_batch
+fit:
+  steps: 120
+  learning_rate: 0.005
+  weight_decay: 0.0
+optimiser:
+  rounds: 120
+  learning_rate: 0.005
+  warmup_fraction: 0.0
+  minimum_learning_ratio: 1.0
+  weight_decay: 0.0

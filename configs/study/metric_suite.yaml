@@ -1,0 +1,10 @@
+study: metric_suite
+base: caps_main
+description: >
+  Utility suite exercised end to end on the auxiliary substrate: fidelity, vessel geometry,
+  motion agreement and path-length efficiency on the schema-compatible records.
+metrics:
+  fidelity: [fid, kid, ssim]
+  geometry: [dice, hausdorff95]
+  motion: [ade_mm, fde_mm, dtw, smoothness, path_efficiency]
+  clinical: [task_success, fluoroscopy_min, contrast_ml, navigation_min]

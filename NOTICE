@@ -1,0 +1,59 @@
+Third-party components and sources
+==================================
+
+This file records every third-party component the release names or depends on, the
+licence it is distributed under upstream, and where that licence is stated. It does
+not restate the licence texts; follow the source links.
+
+The release vendors no third-party source code and bundles no third-party weights or
+records. Where the mechanism depends on an external project, the code here points at
+the project rather than copying it.
+
+Models, recipes and comparators
+-------------------------------
+
+HunyuanVideo-1.5 (Tencent Hunyuan)
+    Role     : the latent video diffusion transformer whose attention modules the
+               mechanism privatises.
+    Source   : https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5
+               https://huggingface.co/tencent/HunyuanVideo-1.5
+    Licence  : Tencent Hunyuan Community License, as stated on the model card and in
+               the upstream repository. Not redistributed here.
+
+Swin-UMamba (Jiarun Liu and contributors)
+    Role     : the state-space vessel-segmentation architecture the appearance branch
+               follows.
+    Source   : https://github.com/JiarunLiu/Swin-UMamba
+    Licence  : Apache License 2.0, as stated in the upstream repository.
+
+DP-LDMs (Michael F. Liu, Saiyue Lyu, Margarita Vinaroz and Mijung Park)
+    Role     : the attention-module privatisation recipe the mechanism builds on.
+    Source   : https://arxiv.org/abs/2305.15759
+    Licence  : arXiv perpetual non-exclusive licence.
+
+TD-MPC2 (Nicklas Hansen, Hao Su and Xiaolong Wang)
+    Role     : the continuous-control world model reproduced as a comparator.
+    Source   : https://github.com/nicklashansen/tdmpc2
+    Licence  : MIT, as stated in the upstream repository.
+
+Runtime and tooling dependencies
+--------------------------------
+
+    PyTorch                    BSD-3-Clause     https://pytorch.org/
+    NumPy                      BSD-3-Clause     https://numpy.org/
+    SciPy                      BSD-3-Clause     https://scipy.org/
+    PyYAML                     MIT              https://pyyaml.org/
+    pytest / pytest-cov        MIT              https://docs.pytest.org/
+    Ruff                       MIT              https://docs.astral.sh/ruff/
+    Black                      MIT              https://black.readthedocs.io/
+    isort                      MIT              https://pycqa.github.io/isort/
+    mypy                       MIT              https://mypy-lang.org/
+    pre-commit                 MIT              https://pre-commit.com/
+
+Records
+-------
+
+No patient record, expert annotation or clinical trajectory is distributed with this
+release. The private multi-centre cohort it describes is not exportable, and the public
+auxiliary sources are not named in the manuscript, so none of them is bundled or
+linked. Access conditions are recorded in `dataset_urls.txt`.

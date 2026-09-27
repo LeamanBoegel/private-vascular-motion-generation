@@ -1,0 +1,6 @@
+# Auxiliary public layer. The manuscript names no public cohort in full, so the estimator is
+# exercised on the staged reference manifest rather than on a named external corpus.
+label: reference_layer
+source_kinds: [public_angiography, open_simulator]
+reference_batch_size: 8
+staged_root: data/reference

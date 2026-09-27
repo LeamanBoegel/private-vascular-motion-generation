@@ -1,0 +1,13 @@
+study: overfit_single_batch
+base: _smoke
+runner: overfit_single_batch
+description: >
+  Supervised single-batch fit on the reduced-width configuration. Confirms that the gradient of
+  the concatenated residual reaches both branches; it carries no privacy account.
+run:
+  seed: 17
+fit:
+  steps: 120
+  learning_rate: 0.005
+  window: 10
+  min_relative_decrease: 0.10

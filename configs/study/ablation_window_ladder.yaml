@@ -1,0 +1,8 @@
+study: ablation_window_ladder
+base: caps_main
+description: >
+  CAPS-specific window ladder. The prefix-sum factorisation is exercised at the two rungs the
+  manuscript reports beside the operating point.
+windows: [8, 16, 64]
+substrate:
+  window_length: 16

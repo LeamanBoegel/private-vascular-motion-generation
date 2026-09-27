@@ -1,0 +1,7 @@
+# Joint private arm with a single isotropic operator across both spaces.
+label: isotropic_window_noise
+noise_geometry: isotropic
+sigma_parallel: 3.9
+sigma_perpendicular: 3.9
+rank: 12
+clipping_norm: 0.85

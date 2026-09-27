@@ -1,0 +1,12 @@
+study: component_interaction
+base: caps_main
+description: >
+  Pairwise interaction rows of the ablation grid. Each row is the drop in contact-event F1 under
+  a simultaneous removal against the sum of the single-removal drops.
+interactions:
+  pairs:
+    - [coupling_latent, shaped_noise]
+    - [shaped_noise, factorization]
+    - [coupling_latent, factorization]
+    - [public_reference_estimator, shaped_noise]
+  reference_contact_event_f1: 0.842

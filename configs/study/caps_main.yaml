@@ -1,0 +1,84 @@
+study: caps_main
+description: >
+  Primary result. Procedure-level coupling-anisotropic private synthesis at the reported
+  geometry on the auxiliary substrate, with the private cohort endpoints blocked.
+scheme: caps_shaped
+cohort: multicentre_private
+runner: caps_12000x0.0032
+
+run:
+  seed: 20260101
+  height: 32
+  width: 32
+  checkpoint_every: 0
+  reference_size: 6
+  private_size: 14
+
+substrate:
+  dimension: 1024
+  window_length: 16
+  sigma_parallel: 5.4
+  sigma_perpendicular: 2.6
+  rank: 12
+  clipping_norm: 0.85
+  sampling_rate: 0.0146
+  rounds: 12000
+  delta: 1.0e-5
+  uniform_window: true
+  truncated_window: false
+
+coupling:
+  latent_dim: 256
+  shared_latent: true
+  coupling_head: true
+
+estimator:
+  reference_batch_size: 6
+  max_minibatches: 1
+
+branch:
+  appearance:
+    in_frames: 16
+    dim: 1024
+    heads: 8
+    window: 4
+    stages: 1
+    state_dim: 4
+    transformer_depth: 1
+    latent_dim: 256
+    patch: 2
+  motion:
+    frames: 16
+    width: 1024
+    latent_dim: 256
+    depth: 2
+  decoder:
+    latent_dim: 1024
+    appearance_extent: [32, 32]
+    frames: 16
+    hidden: 64
+
+optimiser:
+  rounds: 12000
+  learning_rate: 0.0032
+  warmup_fraction: 0.05
+  minimum_learning_ratio: 0.02
+  weight_decay: 0.0
+  beta1: 0.9
+  beta2: 0.999
+  epsilon: 1.0e-8
+  gradient_clip: null
+
+accounting:
+  order_grid: [2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256]
+
+defaults_not_reported_in_manuscript:
+  sampling_rate: 0.0146
+  schedule: linear warmup then cosine decay
+  reference_batch_size: 6
+  max_minibatches: 1
+  decoder_hidden: 64
+  motion_depth: 2
+  appearance_stages: 1
+  appearance_heads: 8
+  appearance_state_dim: 4
